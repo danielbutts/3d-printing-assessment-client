@@ -1,0 +1,49 @@
+Capstone Project Proposal - Daniel Butts
+
+Overview: 
+The project will be a web application allowing companies to perform a high-level evaluation of the practicality of 3D printing parts to reduce cost or improve efficiency in their supply chain.
+
+Description:
+The project was proposed by 3Discovered a startup developing a platform for 3D printing. The current platform allows companies to upload digitized 3D models, analyze them for printing, select a service bureau, and request a quote. However, the current application does not provide a tool for estimating the cost to 3D print a given model.
+
+Because digitizing, test printing, and certifying a part requires time, expense, and expertise, it would be valuable to companies to narrow their parts inventory to a subset that might be well suited to digitization given cost, quantity, and turnaround requirements.
+
+This project will provide an interface for a user to bulk upload a parts inventory and analyze it for parts with the highest potential for digitization and speed the process/reduce the cost of moving to a digital supply chain.
+
+Information on uploaded parts and their score (potential) will be displayed tabularly and in a graphical format.
+
+Application will automatically match parts with compatible printers based on dimensions and material.
+
+Application will calculate least cost service bureaus to fullfill minimum order size/turnaround time and graph those results to show a user the quantities at which digitization is most likely to be cost effective.
+
+User will be able to manually add or edit parts.
+
+Stretch Goals:
+- Admin will be able to add/edit/delete service bureaus and printers
+
+- User will be able to upload an STL file and the file will be analyzed for dimensions, volume, and bounding box (using node-stl package)
+
+
+Technologies:
+APIs- Java/Spring/Spring Data JPA/Postgres
+
+Client- Express/Node/AngularJS/Postgres/Knex/Bootstrap
+
+External APIs:
+manufacturethis.build - cost estimator for 3D printing based on material, printer, dimensions, etc.
+
+senvol.com - The Senvol Database is the first and most comprehensive database for industrial additive manufacturing machines and materials.
+
+goshippo.com - Shipping cost API
+
+(possible) 3discovered.com - Connect to the 3Discovered database to get information on services bureaus and their available printers/turnaround times.
+
+
+Project Tracker/User Stories:
+https://www.pivotaltracker.com/n/projects/2071049
+
+ERD:
+https://www.lucidchart.com/invitations/accept/31bc2e28-12bc-4fa1-9e61-2b0125e11086
+
+Wireframes:
+TBD
