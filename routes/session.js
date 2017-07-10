@@ -11,6 +11,7 @@ const checkSession = (req, res, next) => {
   if (req.session.userId) {
     next();
   } else {
+    console.log('WE GOT A 401');
     const unauthorized = {
       status: 401,
       message: 'Unauthorized',
@@ -21,8 +22,6 @@ const checkSession = (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const { name, password } = req.body;
-
-  console.log('req.body', name, password);
 
   if (name === '' || name.trim() === '') {
     res.status(400).json({ error: 'Name must not be blank' });
@@ -43,20 +42,15 @@ router.post('/', (req, res, next) => {
     };
     rp(options).then((response) => {
       req.session.token = response.headers.authorization;
-      req.session.userId = response.headers.userId;
+      req.session.userId = response.headers.userid;
       req.session.username = response.headers.username;
-      req.session.firstName = response.headers.firstName;
-      res.status(200).json({ timmy: 'bob' });
+      req.session.firstName = response.headers.firstname;
+      res.status(200).json({});
     })
     .catch((err) => {
       next(err);
     });
   }
-});
-
-router.get('/logout', (req, res) => {
-  req.session = null;
-  res.redirect('/auth/login');
 });
 
 module.exports = { router, checkSession };

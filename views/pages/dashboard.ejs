@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/head %>
+<body>
+<% include ../partials/nav %>
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <h1>Parts</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <div class="row">
+          <div class="col-xs-2 text-center">Name</div>
+          <div class="col-xs-2 text-center">Material</div>
+          <div class="col-xs-2 text-center">Price</div>
+          <div class="col-xs-2 text-center">Width</div>
+          <div class="col-xs-2 text-center">Height</div>
+          <div class="col-xs-2 text-center">Depth</div>
+          <div class="col-xs-2 text-center">Volume</div>
+          <div class="col-xs-2 text-center">Weight</div>
+          <div class="col-xs-2 text-center">Print Time</div>
+          <div class="col-xs-2 text-center">Order Size</div>
+          <div class="col-xs-2 text-center">Annual Quantity</div>
+          <div class="col-xs-2 text-center">Required Turnaround</div>
+        </div>
+        <% parts.forEach((part) => { %>
+          <div class="row">
+            <div class="col-xs-2 text-center"><%= part.name %></div>
+            <div class="col-xs-2 text-center"><%= part.material.name %></div>
+            <div class="col-xs-2 text-center"><%= part.price %></div>
+            <div class="col-xs-2 text-center"><%= part.width %></div>
+            <div class="col-xs-2 text-center"><%= part.height %></div>
+            <div class="col-xs-2 text-center"><%= part.depth %></div>
+            <div class="col-xs-2 text-center"><%= part.volume %></div>
+            <div class="col-xs-2 text-center"><%= part.weight %></div>
+            <div class="col-xs-2 text-center"><%= part.printTime %></div>
+            <div class="col-xs-2 text-center"><%= part.minOrder %></div>
+            <div class="col-xs-2 text-center"><%= part.annualOrder %></div>
+            <div class="col-xs-2 text-center"><%= part.maxTurnaround %></div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+</main>
+<% include ../partials/footer %>
+</body>
+</html>
