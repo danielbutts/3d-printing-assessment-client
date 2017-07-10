@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Trivia Scorecard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <main class="container">
+      <div class="row">
+        <div id="message" class="col-xs-offset-2 col-xs-8 message"></div>
+      </div>
+      <form id="registerForm" class="col offset-s2 s8">
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8">
+            Register:<br><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8">
+            <input placeholder="Name" id="name" type="text">
+            <label for="name">Name</label><br><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8">
+            <input placeholder="Password" id="password" type="password">
+            <label for="password">Password</label><br><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-offset-2 col-xs-8">
+          <button type="submit" name="action">
+            Register
+          </button>
+        </div>
+      </form>
+    </main>
+  </body>
+  <script>
+    $('#registerForm').submit((event) => {
+      event.preventDefault();
+      $('#message').empty();
+
+      const name = $('#name').val().trim();
+      const password = $('#password').val();
+
+      const options = {
+        contentType: 'application/json',
+        data: JSON.stringify({ name, password, isAdmin: false }),
+        dataType: 'json',
+        type: 'POST',
+        url: '/users'
+      };
+
+      $.ajax(options)
+        .done(() => {
+          window.location.href = '/auth/login?message=Registration Successful';
+        })
+        .fail(($xhr) => {
+          $('#message').append(`${JSON.parse($xhr.responseText).error}<br><br>`);
+        });
+    });
+  </script>
+</html>

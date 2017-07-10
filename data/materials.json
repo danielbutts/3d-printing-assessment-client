@@ -1,0 +1,26 @@
+[
+    {
+        "id": 3,
+        "name": "Stainless Steel 316L",
+        "manufacturer": "EOS",
+        "density": 7.4,
+        "volumeBuildSpeed": 7200,
+        "unitCost": 1.67
+    },
+    {
+        "id": 5,
+        "name": "Titanium Ti64",
+        "manufacturer": "EOS",
+        "density": 4.41,
+        "volumeBuildSpeed": 13500,
+        "unitCost": 6.34
+    },
+    {
+        "id": 6,
+        "name": "AlSi10Mg",
+        "manufacturer": "EOS",
+        "density": 2.67,
+        "volumeBuildSpeed": 26640,
+        "unitCost": 3.33
+    }
+]

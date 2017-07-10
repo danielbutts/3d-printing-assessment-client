@@ -1,0 +1,38 @@
+[
+    {
+        "id": 7,
+        "name": "EOSINT M 280",
+        "manufacturer": "EOS",
+        "materials": [
+            {
+                "id": 3,
+                "name": "Stainless Steel 316L",
+                "manufacturer": "EOS",
+                "density": 7.4,
+                "volumeBuildSpeed": 7200,
+                "unitCost": 1.67
+            },
+            {
+                "id": 5,
+                "name": "Titanium Ti64",
+                "manufacturer": "EOS",
+                "density": 4.41,
+                "volumeBuildSpeed": 13500,
+                "unitCost": 6.34
+            },
+            {
+                "id": 6,
+                "name": "AlSi10Mg",
+                "manufacturer": "EOS",
+                "density": 2.67,
+                "volumeBuildSpeed": 26640,
+                "unitCost": 3.33
+            }
+        ],
+        "maxWidth": 250,
+        "maxHeight": 325,
+        "maxDepth": 250,
+        "process": "Direct Metal Laser Sintering (DMLS)",
+        "unitCost": 10.27
+    }
+]

@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+img.brand {
+  height: 35px;
+  width: 38px;
+  display: inline-block;
+  margin-top: -8px;
+  margin-bottom: -4px;
+  /*margin-bottom: 5px;*/
+}
