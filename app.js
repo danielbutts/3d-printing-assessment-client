@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session');
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const users = require('./routes/users');
+const upload = require('./routes/upload');
 const dashboard = require('./routes/dashboard');
 const session = require('./routes/session').router;
 require('dotenv').config();
@@ -36,6 +37,7 @@ app.use('/auth', auth);
 app.use('/session', session);
 app.use('/users', users);
 app.use('/dashboard', dashboard);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -45,13 +47,10 @@ app.use((req, res, next) => {
 });
 
 // error handler
-app.use((err, req, res, next) => {
-  console.log('HERE');
+app.use((err, req, res) => { // eslint-disable-line no-unused-vars
   if (err.status === 401) {
-    console.log('err.status', err.status);
     res.redirect('/auth/login');
   } else {
-    console.log('some other error', err.status);
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
