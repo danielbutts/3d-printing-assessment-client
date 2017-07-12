@@ -50,12 +50,12 @@
 
       $.ajax(options)
         .then(() => {
-          console.log("AUTH SUCCEEDED");
+          console.log("Auth Succeeded");
           window.location.href = '/';
         })
         .catch(($xhr) => {
-          console.log("AUTH FAILED");
-          $('#message').append(`${JSON.parse($xhr.responseText).error}<br><br>`);
+          console.log("Auth Failed");
+          $('#message').append("Auth Failed");
         });
     });
   </script>

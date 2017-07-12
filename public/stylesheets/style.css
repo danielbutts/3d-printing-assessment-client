@@ -15,3 +15,11 @@ img.brand {
   margin-bottom: -4px;
   /*margin-bottom: 5px;*/
 }
+
+div.message {
+  color: red;
+}
+
+span.orange {
+  color: darkorange;
+}

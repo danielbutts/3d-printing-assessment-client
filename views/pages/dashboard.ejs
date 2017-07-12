@@ -12,36 +12,47 @@
     </div>
     <div class="row">
       <div class="col-xs-12 text-center">
-        <div class="row">
-          <div class="col-xs-2 text-center">Name</div>
-          <div class="col-xs-2 text-center">Material</div>
-          <div class="col-xs-2 text-center">Price</div>
-          <div class="col-xs-2 text-center">Width</div>
-          <div class="col-xs-2 text-center">Height</div>
-          <div class="col-xs-2 text-center">Depth</div>
-          <div class="col-xs-2 text-center">Volume</div>
-          <div class="col-xs-2 text-center">Weight</div>
-          <div class="col-xs-2 text-center">Print Time</div>
-          <div class="col-xs-2 text-center">Order Size</div>
-          <div class="col-xs-2 text-center">Annual Quantity</div>
-          <div class="col-xs-2 text-center">Required Turnaround</div>
-        </div>
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th class="text-center">Name</th>
+            <th class="text-center">Material</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Width</th>
+            <th class="text-center">Height</th>
+            <th class="text-center">Depth</th>
+            <th class="text-center">Volume</th>
+            <th class="text-center">Weight</th>
+            <th class="text-center">Print Time</th>
+            <th class="text-center">Order Size</th>
+            <th class="text-center">Annual Quantity</th>
+            <th class="text-center"></th>
+          </tr>
         <% parts.forEach((part) => { %>
-          <div class="row">
-            <div class="col-xs-2 text-center"><%= part.name %></div>
-            <div class="col-xs-2 text-center"><%= part.material.name %></div>
-            <div class="col-xs-2 text-center"><%= part.price %></div>
-            <div class="col-xs-2 text-center"><%= part.width %></div>
-            <div class="col-xs-2 text-center"><%= part.height %></div>
-            <div class="col-xs-2 text-center"><%= part.depth %></div>
-            <div class="col-xs-2 text-center"><%= part.volume %></div>
-            <div class="col-xs-2 text-center"><%= part.weight %></div>
-            <div class="col-xs-2 text-center"><%= part.printTime %></div>
-            <div class="col-xs-2 text-center"><%= part.minOrder %></div>
-            <div class="col-xs-2 text-center"><%= part.annualOrder %></div>
-            <div class="col-xs-2 text-center"><%= part.maxTurnaround %></div>
-          </div>
+          <tr>
+            <td><%= part.name %></td>
+            <td><% if (part.material !== null) { %>
+            <%= part.material.name %>
+            <% } %></td>
+            <td>$<%= part.price %></td>
+            <td><%= part.width %></td>
+            <td><%= part.height %></td>
+            <td><%= part.depth %></td>
+            <td><%= part.volume %></td>
+            <td><%= part.weight %></td>
+            <td><%= part.printTime %></td>
+            <td><%= part.minOrder %></td>
+            <td><%= part.annualOrder %></td>
+            <td>
+              <% if (!part.isValid) { %>
+                <span class="glyphicon glyphicon-alert orange" aria-hidden="true"></span>
+              <% } else { %>
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>              
+              <% } %>
+            </td>
+            
+          </tr>
         <% }); %>
+        </table>
       </div>
     </div>
 </main>

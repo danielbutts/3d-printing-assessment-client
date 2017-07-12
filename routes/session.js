@@ -1,17 +1,14 @@
-// const bcrypt = require('bcrypt-as-promised');
 const express = require('express');
-// const knex = require('../db/connection');
 const rp = require('request-promise');
 require('dotenv').config();
 
 const router = express.Router();
-const AUTH_URL = process.env.AUTH_URL || 'http://localhost:8080/login';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/';
 
 const checkSession = (req, res, next) => {
   if (req.session.userId) {
     next();
   } else {
-    console.log('WE GOT A 401');
     const unauthorized = {
       status: 401,
       message: 'Unauthorized',
@@ -30,7 +27,7 @@ router.post('/', (req, res, next) => {
   } else {
     const options = {
       method: 'POST',
-      uri: AUTH_URL,
+      uri: `${BASE_URL}login`,
       body: {
         username: name,
         password,
