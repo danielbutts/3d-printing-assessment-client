@@ -1,0 +1,31 @@
+<navbar></navbar>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h3>Parts ({{$ctrl.parts.length}})</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Material</th>
+          <th class="text-center">Price</th>
+          <th class="text-center">Score</th>
+          <th class="text-center"></th>
+        </tr>
+        <tr ng-repeat="part in $ctrl.parts">
+          <td>{{part.name}}</td>
+          <td><span ng-if="part.material !== null">{{part.material.name}}</span></td>
+          <td>${{part.price}}</td>
+          <td>{{part.score}}</td>
+          <td>
+            <span ng-if="!part.isValid" class="glyphicon glyphicon-alert orange" aria-hidden="true"></span>
+            <span ng-if="part.isValid" class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
