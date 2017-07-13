@@ -6,10 +6,9 @@ const router = express.Router();
 const BASE_URL = process.env.BASE_URL || 'http://localhost:8080';
 
 router.post('/', (req, res, next) => {
-  console.log('In login post route');
-  const { name, password } = req.body;
+  const { username, password } = req.body.login;
 
-  if (name === '' || name.trim() === '') {
+  if (username === '' || username.trim() === '') {
     res.status(400).json({ error: 'Name must not be blank' });
   } else if (password === '') {
     res.status(400).json({ error: 'Password must not be blank' });
@@ -18,7 +17,7 @@ router.post('/', (req, res, next) => {
       method: 'POST',
       uri: `${BASE_URL}/login`,
       body: {
-        username: name,
+        username,
         password,
       },
       json: true,
@@ -27,12 +26,12 @@ router.post('/', (req, res, next) => {
       },
     };
     rp(options).then((response) => {
-      console.log(response);
-      // req.session.token = response.headers.authorization;
-      // req.session.userId = response.headers.userid;
-      // req.session.username = response.headers.username;
-      // req.session.firstName = response.headers.firstname;
-      res.status(200).json({response});
+      res.status(200).json({
+        token: response.headers.authorization,
+        userId: response.headers.userid,
+        username: response.headers.username,
+        firstName: response.headers.firstname
+      });
     })
     .catch((err) => {
       next(err);

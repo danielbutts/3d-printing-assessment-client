@@ -22,7 +22,7 @@
     .state({
       name: 'login',
       url: '/login',
-      component: 'loginPage'
+      component: 'loginForm'
     })
   }
 

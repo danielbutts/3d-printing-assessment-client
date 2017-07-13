@@ -1,9 +1,6 @@
 <navbar></navbar>
 <main class="container">
-  <div class="row">
-    <div id="message" class="col-xs-offset-2 col-xs-8 message"></div>
-  </div>
-  <form id="loginForm" method="post" action="#" class="col offset-s2 s8">
+  <form name="form" novalidate ng-submit="$ctrl.submit()">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
         Sign In:<br><br>
@@ -11,26 +8,25 @@
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <input placeholder="Name" name="name" id="name" type="text">
-        <label for="name">Name</label><br><br>
+        <input placeholder="Username" name="username" id="username" type="text" required ng-model="$ctrl.login.username">
+        <label for="username">Username</label><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <input placeholder="Password" name="password"  id="password" type="password">
+        <input placeholder="Password" name="password"  id="password" type="password" required ng-model="$ctrl.login.password">
         <label for="password">Password</label><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-      <button type="submit">Submit</button>
+      <button type="submit" ng-disabled="form.$invalid">Submit</button>
     </div>
   </form>
 </main>
-<script>
+<!-- <script>
 $('#loginForm').submit((event) => {
   event.preventDefault();
-  console.log("IM HERERERERE!");
   $('#message').empty();
 
   const name = $('#name').val().trim();
@@ -45,8 +41,9 @@ $('#loginForm').submit((event) => {
   };
 
   $.ajax(options)
-    .then(() => {
+    .then((response) => {
       console.log("Auth Succeeded");
+      console.log(response);
       // window.location.href = '/';
     })
     .catch(($xhr) => {
@@ -54,4 +51,4 @@ $('#loginForm').submit((event) => {
       $('#message').append("Auth Failed");
     });
 });
-</script>
+</script> -->
