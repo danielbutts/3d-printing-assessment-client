@@ -1,26 +1,29 @@
-(function() {
-  'use strict'
+(function () {
+  'use strict';
 
+  /* global angular */
+  /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
     .component('loginForm', {
       bindings: {
         login: '<',
         authenticate: '&',
       },
-      controller: controller,
-      templateUrl: '/js/user/login-form.template.html'
-    })
+      controller,
+      templateUrl: '/js/user/login-form.template.html',
+    });
 
-  controller.$inject = ['$state','authService']
+  controller.$inject = ['$state', 'authService'];
   function controller($state, authService) {
-    const vm = this
-    
-    vm.submit = function () {
-      authService.authenticate({ login: vm.login }).then((response)=> {
+    const vm = this;
+
+    vm.submit = () => {
+      authService.authenticate({ login: vm.login }).then((response) => {
+        console.log(response);
         $state.go('dashboard');
       }).catch((err) => {
-        $state.go('login', { message: 'Authentication Failed'});
-      })
-    }
+        $state.go('login', { message: 'Authentication Failed', error: err });
+      });
+    };
   }
 }());

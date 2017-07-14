@@ -3,6 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const users = require('./routes/users');
+const parts = require('./routes/parts');
 const auth = require('./routes/auth');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -26,6 +27,7 @@ app.use(cookieSession({
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon-32x32.png')));
 
 app.use('/api/login', auth);
+app.use('/api/parts', parts);
 app.use('/api/users', users);
 
 app.use('*', (req, res) => {

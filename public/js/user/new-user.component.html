@@ -1,0 +1,50 @@
+<navbar></navbar>
+<main class="container">
+  <form name="form" novalidate ng-submit="$ctrl.submit()">
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+        Register:<br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <input placeholder="First Name" name="firstName" id="firstName" type="text" required ng-model="$ctrl.user.firstName">
+        <label for="firstName">First Name</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <input placeholder="Last Name" name="lastName" id="lastName" type="text" required ng-model="$ctrl.user.lastName">
+        <label for="lastName">Last Name</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <input placeholder="Username" name="username" id="username" type="text" required ng-model="$ctrl.user.username">
+        <label for="username">Username</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <input placeholder="Password" name="password" id="password" type="password" required ng-model="$ctrl.user.password">
+        <label for="password">Password</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <input placeholder="email@example.com" name="email" id="email" type="text" required ng-model="$ctrl.user.email">
+        <label for="email">Email</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <input placeholder="Company" name="company" id="company" type="text" required ng-model="$ctrl.user.company">
+        <label for="company">Company</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <input placeholder="Zip Code" name="zipCode" id="zipCode" type="text" required ng-model="$ctrl.user.zipCode">
+        <label for="zipCode">Zip Code</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-2 col-xs-8">
+      <button type="submit" ng-disabled="form.$invalid">Register</button>
+    </div>
+  </form>
+</main>

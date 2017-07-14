@@ -1,61 +1,57 @@
-(function() {
-  'use strict'
+(function () {
+  'use strict';
 
+  /* global angular, window */
+  /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
-    .service('authService', service)
+    .service('authService', service);
 
-  service.$inject = ['$http','__env']
+  service.$inject = ['$http', '__env'];
   function service($http, __env) {
-    let authToken;
-    
+    // let authToken;
+
     this.checkCredentials = checkCredentials;
     this.authenticate = authenticate;
-    this.loadUserCredentials = loadUserCredentials;
-    this.storeUserCredentials = storeUserCredentials;
-    this.useCredentials = useCredentials;
+    // this.loadUserCredentials = loadUserCredentials;
+    // this.storeUserCredentials = storeUserCredentials;
+    // this.useCredentials = useCredentials;
     this.destroyUserCredentials = destroyUserCredentials;
 
     function authenticate(login) {
+      console.log('authenticate');
       return $http.post(`${__env.apiUrl}/api/login`, login).then((response) => {
-        storeUserCredentials(response.data.token);
+        const token = response.data.token;
+        console.log('response.data.token', token);
+        window.localStorage.setItem(__env.authTokenKey, token);
+        $http.defaults.headers.common.Authorization = token;
         return response.data;
-      })
+      });
     }
-        
-    function loadUserCredentials() {
-      var token = window.localStorage.getItem(__env.authTokenKey);
-      if (token) {
-        useCredentials(token);
-      }
-    }
-   
+
+    // function loadUserCredentials() {
+    //   console.log('loadUserCredentials');
+    //   const token = window.localStorage.getItem(__env.authTokenKey);
+    //   if (token) {
+    //     useCredentials(token);
+    //   }
+    // }
+
     function checkCredentials() {
-      var token = window.localStorage.getItem(__env.authTokenKey);
+      console.log('checkCredentials');
+      const token = window.localStorage.getItem(__env.authTokenKey);
       if (token) {
         return true;
       }
       return false;
     }
-    
-    function storeUserCredentials(token) {
-      window.localStorage.setItem(__env.authTokenKey, token);
-      useCredentials(token);
-    }
-   
-    function useCredentials(token) {
-      authToken = token;
-      
-      // Set the token as header for your requests!
-      $http.defaults.headers.common.Authorization = authToken;
-    }
-   
+
     function destroyUserCredentials() {
-      authToken = undefined;
+      // authToken = undefined;
       $http.defaults.headers.common.Authorization = undefined;
       window.localStorage.removeItem(__env.authTokenKey);
     }
-   
-    function register(user) {
+
+    // function register(user) {
       // return $q(function(resolve, reject) {
       //   $http.post(API_ENDPOINT.url + '/signup', user).then(function(result) {
       //     if (result.data.success) {
@@ -65,14 +61,12 @@
       //     }
       //   });
       // });
-    };
-   
-    function logout() {
-      destroyUserCredentials();
-    };
-   
-    loadUserCredentials();
-   
-  }
+    // };
 
+    function logout() { // eslint-disable-line no-unused-vars
+      destroyUserCredentials();
+    }
+
+    // loadUserCredentials();
+  }
 }());
