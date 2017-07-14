@@ -7,10 +7,15 @@
       templateUrl: '/js/nav/nav.template.html'
     })
 
-  // controller.$inject = []
-  function controller() {
+  controller.$inject = ['$state','authService']
+  function controller($state, authService) {
     const vm = this
 
+    vm.logout = function() {
+      authService.destroyUserCredentials();
+      $state.go('login');
+    }
+    
     vm.$onInit = function () {
     }
   }

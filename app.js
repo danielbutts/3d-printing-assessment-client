@@ -2,6 +2,8 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
@@ -23,7 +25,11 @@ app.use(cookieSession({
 }));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon-32x32.png')));
 
-app.use('/api/login', require('./routes/login'))
+app.use('/api/login', auth);
+
+// AUTH MIDDLEWARE HERE!!!!
+
+app.use('/api/users', users);
 
 app.use('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, 'public') });
@@ -51,4 +57,14 @@ app.use((err, req, res) => { // eslint-disable-line no-unused-vars
   }
 });
 
+// function validateUser(req, res) => {
+//   const currentUser = {
+//     firstName: req.session.firstName,
+//     userId: req.session.userId,
+//   };
+// 
+//   let error;
+//   res.render('pages/login', { error, currentUser });
+// };
+// }
 module.exports = app;
