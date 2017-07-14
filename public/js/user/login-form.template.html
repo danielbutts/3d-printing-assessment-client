@@ -24,31 +24,3 @@
     </div>
   </form>
 </main>
-<!-- <script>
-$('#loginForm').submit((event) => {
-  event.preventDefault();
-  $('#message').empty();
-
-  const name = $('#name').val().trim();
-  const password = $('#password').val();
-
-  const options = {
-    contentType: 'application/json',
-    data: JSON.stringify({ name, password }),
-    dataType: 'json',
-    type: 'POST',
-    url: '/api/login'
-  };
-
-  $.ajax(options)
-    .then((response) => {
-      console.log("Auth Succeeded");
-      console.log(response);
-      // window.location.href = '/';
-    })
-    .catch(($xhr) => {
-      console.log("Auth Failed");
-      $('#message').append("Auth Failed");
-    });
-});
-</script> -->

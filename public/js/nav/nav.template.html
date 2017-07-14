@@ -7,20 +7,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/"><img src="/images/partridge_logo.png" class="brand align-top" alt=""> PARTridge</a>
+      <a class="navbar-brand" ui-sref="home"><img src="/images/partridge_logo.png" class="brand align-top" alt=""> PARTridge</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="/upload">Upload</a></li>
-        <li><a href="/dashboard">Dashboard</a></li>
+        <li ng-if="$ctrl.isAuthenticated === true"><a ui-sref="dashboard">Dashboard</a></li>
+        <li ng-if="$ctrl.isAuthenticated === true"><a ui-sref="upload">Upload</a></li>
+        <li ng-if="$ctrl.isAuthenticated === true"><a ui-sref="new-part">New Part</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="username === undefined"><a ng-click="$ctrl.logout()">[{{ username }}] Logout</a></li>  
-        <li ng-if="username === undefined"><a href="/login">Login</a></li>          
-        <li ng-if="username === undefined"><a href="/register">Register</a></li>
+        <li ng-if="$ctrl.isAuthenticated === true"><a ng-click="$ctrl.logout()">[{{ username }}] Logout</a></li>  
+        <li ng-if="$ctrl.isAuthenticated !== true"><a ui-sref="login">Login</a></li>          
+        <li ng-if="$ctrl.isAuthenticated !== true"><a ui-sref="register">Register</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

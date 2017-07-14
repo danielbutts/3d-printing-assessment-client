@@ -1,5 +1,27 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #e5f6fd;
+}
+
+div.splash-container:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.2;
+    background-color: #7fd4f5;
+    background-image: url('../images/gears.png');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
 }
 
 a {
@@ -21,4 +43,25 @@ div.message {
 
 span.orange {
   color: darkorange;
+}
+
+.table {
+  background-color: white;
+}
+.splash {
+  font-family: 'Squada One', cursive;
+  color: #4e4f50;
+}
+
+.splash-title {
+  font-size: 60px;
+}
+
+.splash-text {
+  font-size: 25px;
+  color: #878d95;
+}
+
+.pale-blue {
+  color: #6fa9c0;  
 }

@@ -26,9 +26,6 @@ app.use(cookieSession({
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon-32x32.png')));
 
 app.use('/api/login', auth);
-
-// AUTH MIDDLEWARE HERE!!!!
-
 app.use('/api/users', users);
 
 app.use('*', (req, res) => {
@@ -57,14 +54,4 @@ app.use((err, req, res) => { // eslint-disable-line no-unused-vars
   }
 });
 
-// function validateUser(req, res) => {
-//   const currentUser = {
-//     firstName: req.session.firstName,
-//     userId: req.session.userId,
-//   };
-// 
-//   let error;
-//   res.render('pages/login', { error, currentUser });
-// };
-// }
 module.exports = app;

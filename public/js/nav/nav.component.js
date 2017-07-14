@@ -13,10 +13,15 @@
 
     vm.logout = function() {
       authService.destroyUserCredentials();
-      $state.go('login');
+      $state.go('home');
     }
     
     vm.$onInit = function () {
+      if (authService.checkCredentials()) {
+        vm.isAuthenticated = true;
+      } else {
+        vm.isAuthenticated = false;        
+      }
     }
   }
 

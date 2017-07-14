@@ -6,7 +6,6 @@
 
   service.$inject = ['$http','__env']
   function service($http, __env) {
-    // let isAuthenticated = false;
     let authToken;
     
     this.checkCredentials = checkCredentials;

@@ -4,7 +4,7 @@
   angular.module('app')
     .component('splashPage', {
       controller: controller,
-      templateUrl: '/js/home/splash.html'
+      templateUrl: '/js/home/splash.template.html'
     })
 
   // controller.$inject = ['$http','__env']

@@ -9,7 +9,6 @@ const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/';
 
 router.get('/', (req, res, next) => {
   let username = '';
-  console.log(req.headers);
   if (req.session !== undefined) {
     username = req.session.username;
   }

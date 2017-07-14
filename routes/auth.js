@@ -33,8 +33,6 @@ router.post('/', (req, res, next) => {
         userId: response.headers.userid,
       }
       const clientToken = jwt.encode(authorizedUser,JWT_SECRET);
-      // console.log(clientToken);
-      // console.log(jwt.decode(clientToken, JWT_SECRET));
       
       res.status(200).json({
         token: clientToken,

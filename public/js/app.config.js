@@ -17,12 +17,22 @@
     .state({
       name: 'dashboard',
       url: '/dashboard',
-      component: 'partsList'
+      component: 'dashboard'
+    })
+    .state({
+      name: 'new-part',
+      url: '/new-part',
+      component: 'newPart'
     })
     .state({
       name: 'login',
       url: '/login',
       component: 'loginForm'
+    })
+    .state({
+      name: 'upload',
+      url: '/upload',
+      component: 'upload'
     })
   }
 

@@ -2,9 +2,9 @@
   'use strict'
 
   angular.module('app')
-    .component('partsList', {
+    .component('dashboard', {
       controller: controller,
-      templateUrl: '/js/part/parts-list.html'
+      templateUrl: '/js/part/dashboard.template.html'
     })
 
   controller.$inject = ['$state', '$http', '__env', 'partsService', 'authService']
