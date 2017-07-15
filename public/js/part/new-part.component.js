@@ -20,8 +20,8 @@
     };
 
     vm.submit = function () {
-      partsService.createPart(vm.part).then((response) => {
-        console.log(response);
+      partsService.createPart(vm.part).then(() => {
+        $state.go('dashboard');
       });
     };
   }
