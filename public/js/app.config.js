@@ -1,39 +1,45 @@
-(function() {
+(function () {
   'use strict';
-  angular.module('app').config(config)
 
-  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider']
+  /* global angular */
+  /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
+  angular.module('app').config(config);
 
-  function config($stateProvider, $urlRouterProvider, $locationProvider){
+  config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-    $locationProvider.html5Mode(true)
+  function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
 
     $stateProvider
     .state({
       name: 'home',
       url: '/',
-      component: 'splashPage'
+      component: 'splashPage',
     })
     .state({
       name: 'dashboard',
       url: '/dashboard',
-      component: 'dashboard'
+      component: 'dashboard',
     })
     .state({
       name: 'new-part',
       url: '/new-part',
-      component: 'newPart'
+      component: 'newPart',
+    })
+    .state({
+      name: 'edit-part',
+      url: '/edit-part/:partId',
+      component: 'editPart',
     })
     .state({
       name: 'login',
       url: '/login',
-      component: 'loginForm'
+      component: 'loginForm',
     })
     .state({
       name: 'upload',
       url: '/upload',
-      component: 'upload'
-    })
+      component: 'upload',
+    });
   }
-
 }());

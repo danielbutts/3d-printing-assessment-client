@@ -38,7 +38,7 @@ router.post('/', (req, res, next) => {
       res.status(200).json({
         token: clientToken,
         username: response.headers.username,
-        firstName: response.headers.firstname,
+        userId: response.headers.userid,
       });
     })
     .catch((err) => {

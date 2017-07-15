@@ -8,36 +8,27 @@
 
   service.$inject = ['$http', '__env'];
   function service($http, __env) {
-    // let authToken;
-
     this.checkCredentials = checkCredentials;
     this.authenticate = authenticate;
-    // this.loadUserCredentials = loadUserCredentials;
-    // this.storeUserCredentials = storeUserCredentials;
-    // this.useCredentials = useCredentials;
-    this.destroyUserCredentials = destroyUserCredentials;
+    this.logout = logout;
 
     function authenticate(login) {
-      console.log('authenticate');
       return $http.post(`${__env.apiUrl}/api/login`, login).then((response) => {
         const token = response.data.token;
-        console.log('response.data.token', token);
+        const userId = response.data.userId;
+        const username = response.data.username;
         window.localStorage.setItem(__env.authTokenKey, token);
+        window.localStorage.setItem(__env.authUserIdKey, userId);
+        window.localStorage.setItem(__env.authUsernameKey, username);
         $http.defaults.headers.common.Authorization = token;
         return response.data;
       });
     }
 
-    // function loadUserCredentials() {
-    //   console.log('loadUserCredentials');
-    //   const token = window.localStorage.getItem(__env.authTokenKey);
-    //   if (token) {
-    //     useCredentials(token);
-    //   }
-    // }
-
     function checkCredentials() {
-      console.log('checkCredentials');
+      // TODO - pass current token and userId to a verification route on the 
+      // server to determine validity of token and match to userId
+      
       const token = window.localStorage.getItem(__env.authTokenKey);
       if (token) {
         return true;
@@ -45,10 +36,11 @@
       return false;
     }
 
-    function destroyUserCredentials() {
-      // authToken = undefined;
+    function logout() { // eslint-disable-line no-unused-vars
       $http.defaults.headers.common.Authorization = undefined;
       window.localStorage.removeItem(__env.authTokenKey);
+      window.localStorage.removeItem(__env.authUsernameKey);
+      window.localStorage.removeItem(__env.authUserIdKey);
     }
 
     // function register(user) {
@@ -62,11 +54,5 @@
       //   });
       // });
     // };
-
-    function logout() { // eslint-disable-line no-unused-vars
-      destroyUserCredentials();
-    }
-
-    // loadUserCredentials();
   }
 }());

@@ -7,8 +7,6 @@ const BASE_URL = process.env.BASE_URL || 'http://localhost:8080/';
 
 // add auth check as middleware
 router.post('/', authUtils.validateToken, (req, res, next) => {
-  console.log(req.body);
-
   // do I need to check for undefined rather than ''?
   const { name, materialId, width, height, volume, price, leadTime } = req.body;
   if (name === '') {
@@ -33,6 +31,28 @@ router.post('/', authUtils.validateToken, (req, res, next) => {
         volume,
         price,
         leadTime,
+      },
+      json: true,
+    };
+    rp(options).then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
+});
+
+router.get('/:id', authUtils.validateToken, (req, res, next) => {
+  const id = req.params.id;
+  if (id === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'id\'.' });
+  } else {
+    const options = {
+      method: 'GET',
+      uri: `${BASE_URL}parts/${id}`,
+      headers: {
+        authorization: req.token,
       },
       json: true,
     };

@@ -19,7 +19,7 @@
         <li ng-if="$ctrl.isAuthenticated === true"><a ui-sref="new-part">New Part</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li ng-if="$ctrl.isAuthenticated === true"><a ng-click="$ctrl.logout()">[{{ username }}] Logout</a></li>  
+        <li ng-if="$ctrl.isAuthenticated === true"><a ng-click="$ctrl.logout()">[{{$ctrl.username}}] Logout</a></li>  
         <li ng-if="$ctrl.isAuthenticated !== true"><a ui-sref="login">Login</a></li>          
         <li ng-if="$ctrl.isAuthenticated !== true"><a ui-sref="register">Register</a></li>
       </ul>

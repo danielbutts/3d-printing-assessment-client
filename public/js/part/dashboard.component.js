@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  /* global angular */
+  /* global angular, window */
   /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
     .component('dashboard', {
@@ -12,12 +12,14 @@
   controller.$inject = ['$state', '$http', '__env', 'partsService', 'authService'];
   function controller($state, $http, __env, partsService, authService) {
     const vm = this;
-
+    const userId = window.localStorage.getItem(__env.authUserIdKey);
+    console.log('dashboard', userId);
     vm.$onInit = () => {
-      if (authService.checkCredentials() === false) {
+      const token = authService.checkCredentials();
+      if (token === false) {
         $state.go('login');
       }
-      partsService.getParts().then((parts) => {
+      partsService.getPartsForUser(userId).then((parts) => {
         vm.parts = parts;
       });
     };

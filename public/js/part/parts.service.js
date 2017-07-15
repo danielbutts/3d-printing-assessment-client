@@ -8,18 +8,42 @@
 
   service.$inject = ['$http', '__env'];
   function service($http, __env) {
-    this.getParts = getParts;
+    this.getMaterials = getMaterials;
+    this.getPartsForUser = getPartsForUser;
+    this.getPart = getPart;
     this.createPart = createPart;
 
-    function getParts() {
+    function getMaterials() {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/users`,
+        url: `${__env.apiUrl}/api/materials/`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function getPartsForUser(userId) {
+      const options = {
+        method: 'GET',
+        url: `${__env.apiUrl}/api/users/${userId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
       };
       return $http(options).then(response => response.data.parts);
+    }
+
+    function getPart(partId) {
+      const options = {
+        method: 'GET',
+        url: `${__env.apiUrl}/api/parts/${partId}`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
     }
 
     function createPart(part) {
