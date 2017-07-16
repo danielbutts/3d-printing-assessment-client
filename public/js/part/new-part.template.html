@@ -12,7 +12,7 @@
         <br><label for="name">Name</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-sm-4">
-        <input placeholder="Material" name="materialId" id="materialId" type="text" required ng-model="$ctrl.part.materialId">
+        <select ng-options="material.id as material.name for material in $ctrl.materials" name="materialId" id="materialId" ng-model="$ctrl.part.materialId"></select>
         <br><label for="materialId">Material</label><br><br>
       </div>
     </div>
@@ -38,12 +38,12 @@
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-sm-4">
-        <input placeholder="666.66" name="price" id="price" type="text" required ng-model="$ctrl.part.price">
+        <input placeholder="Current Price" name="price" id="price" type="text" required ng-model="$ctrl.part.price">
         <br><label for="price">Current Price ($)</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-sm-4">
-        <input placeholder="7" name="leadTime" id="leadTime" type="text" required ng-model="$ctrl.part.leadTime">
-        <br><label for="leadTime">Max. Lead Time (days)</label><br><br>
+        <input placeholder="Required Turnaround" name="maxTurnaround" id="maxTurnaround" type="text" required ng-model="$ctrl.part.maxTurnaround">
+        <br><label for="maxTurnaround">Required Turnaround (days)</label><br><br>
       </div>
     </div>
     <div class="row">

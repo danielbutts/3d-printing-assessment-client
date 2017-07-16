@@ -13,7 +13,6 @@
   function controller($state, $http, __env, partsService, authService) {
     const vm = this;
     const userId = window.localStorage.getItem(__env.authUserIdKey);
-    console.log('dashboard', userId);
     vm.$onInit = () => {
       const token = authService.checkCredentials();
       if (token === false) {

@@ -19,7 +19,6 @@
 
     vm.submit = () => {
       authService.authenticate({ login: vm.login }).then((response) => {
-        console.log(response);
         $state.go('dashboard');
       }).catch((err) => {
         $state.go('login', { message: 'Authentication Failed', error: err });

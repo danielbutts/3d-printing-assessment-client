@@ -17,6 +17,9 @@
       if (authService.checkCredentials() === false) {
         $state.go('login');
       }
+      partsService.getMaterials().then((materials) => {
+        vm.materials = materials;
+      });
     };
 
     vm.submit = function () {

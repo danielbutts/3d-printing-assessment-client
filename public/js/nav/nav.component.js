@@ -13,7 +13,6 @@
   function controller($state, authService, __env) {
     const vm = this;
     vm.username = window.localStorage.getItem(__env.authUsernameKey);
-    console.log('nav', vm.username);
 
     vm.logout = () => {
       authService.logout();

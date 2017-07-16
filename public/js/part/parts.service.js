@@ -12,6 +12,7 @@
     this.getPartsForUser = getPartsForUser;
     this.getPart = getPart;
     this.createPart = createPart;
+    this.updatePart = updatePart;
 
     function getMaterials() {
       const options = {
@@ -47,7 +48,6 @@
     }
 
     function createPart(part) {
-      console.log(part);
       const options = {
         method: 'POST',
         url: `${__env.apiUrl}/api/parts`,
@@ -56,10 +56,19 @@
         },
         data: part,
       };
-      return $http(options).then((response) => {
-        console.log(response);
-        return response.data.parts;
-      });
+      return $http(options).then(response => response.data.parts);
+    }
+
+    function updatePart(part) {
+      const options = {
+        method: 'PATCH',
+        url: `${__env.apiUrl}/api/parts`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+        data: part,
+      };
+      return $http(options).then(response => response.data.parts);
     }
   }
 }());

@@ -19,6 +19,9 @@
         $state.go('login');
       }
       partsService.getPart(partId).then((part) => {
+        if (part.material !== null) {
+          part.materialId = part.material.id;
+        }
         vm.part = part;
       });
       partsService.getMaterials().then((materials) => {
