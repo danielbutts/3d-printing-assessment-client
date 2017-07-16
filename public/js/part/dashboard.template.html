@@ -30,7 +30,7 @@
           <td>{{part.name}}</td>
           <td>{{part.width}} x {{part.depth}} x {{part.height}}</span></td>
           <td>{{part.volume}}</span></td>
-          <td><span ng-if="part.material !== null">{{part.material.name}}</span></td>
+          <td><span ng-if="part.material !== null">{{part.material.type}}</span></td>
           <td>${{part.price}}</td>
           <td>{{part.score}}</td>
           <td><a ui-sref="edit-part({ partId: part.id })">

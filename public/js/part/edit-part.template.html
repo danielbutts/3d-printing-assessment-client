@@ -19,7 +19,7 @@
         <br><label for="name">Name</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <select ng-options="material.id as material.name for material in $ctrl.materials" name="materialId" id="materialId" ng-model="$ctrl.part.materialId"></select>
+        <select ng-options="material.id as material.type for material in $ctrl.materials" name="materialId" id="materialId" ng-model="$ctrl.part.materialId"></select>
         <br><label for="materialId">Material</label><br><br>
       </div>
     </div>
