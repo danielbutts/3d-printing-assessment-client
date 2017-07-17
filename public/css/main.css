@@ -93,3 +93,7 @@ th.middle-header {
   background-color: #4e4f50;
   border-color:  #878d95;
 }
+
+.hidden {
+  display: none;
+}

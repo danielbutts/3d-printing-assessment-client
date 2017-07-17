@@ -1,5 +1,9 @@
 <navbar></navbar>
 <main>
+  <div id="message" class="alert alert-danger col-xs-offset-2 col-xs-8 hidden" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    {{$ctrl.message}}
+  </div>
   <form name="form" novalidate ng-submit="$ctrl.submit()">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
@@ -8,7 +12,8 @@
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <input placeholder="File(s)" id="file" required type="file" name="uploads[]" multiple="multiple" ng-model="$ctrl.file">
+        <input id="fileUploadField" type="file" nv-file-select="" uploader="$ctrl.uploader" />
+        <!-- <input placeholder="File(s)" id="file" required type="file" name="uploads[]" multiple="multiple" ng-model="$ctrl.file"> -->
         <br><br>
       </div>
     </div>
