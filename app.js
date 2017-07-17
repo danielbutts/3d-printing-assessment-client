@@ -6,6 +6,7 @@ const users = require('./routes/users');
 const parts = require('./routes/parts');
 const materials = require('./routes/materials');
 const auth = require('./routes/auth');
+const upload = require('./routes/upload');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
@@ -31,6 +32,7 @@ app.use('/api/login', auth);
 app.use('/api/parts', parts);
 app.use('/api/materials', materials);
 app.use('/api/users', users);
+app.use('/api/upload', upload);
 
 app.use('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, 'public') });

@@ -1,15 +1,16 @@
-(function() {
+(function () {
   'use strict';
 
-  var env = {};
+  /* global angular, window */
+  /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
+  const env = {};
 
   // Import variables if present (from env.js)
-  if(window){  
-    Object.assign(env, window.__env);
+  if (window) {
+    Object.assign(env, window.__env); // eslint-disable-line no-underscore-dangle
   }
 
   // Define AngularJS application
-  angular.module('app', ['ui.router'])
+  angular.module('app', ['ui.router', 'angularFileUpload'])
   .constant('__env', env);
-
 }());

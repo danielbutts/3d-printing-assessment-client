@@ -13,7 +13,7 @@
   function controller($state, $http, __env, partsService, authService) {
     const vm = this;
 
-    vm.$onInit = function () {
+    vm.$onInit = () => {
       if (authService.checkCredentials() === false) {
         $state.go('login');
       }
@@ -22,7 +22,7 @@
       });
     };
 
-    vm.submit = function () {
+    vm.submit = () => {
       partsService.createPart(vm.part).then(() => {
         $state.go('dashboard');
       });

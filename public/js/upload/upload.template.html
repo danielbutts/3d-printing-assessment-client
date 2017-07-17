@@ -1,9 +1,6 @@
 <navbar></navbar>
 <main>
-  <div class="row">
-    <div id="message" class="col-xs-offset-2 col-xs-8 message"></div>
-  </div>
-  <form id="uploadForm" method="post" action="/session" class="col offset-s2 s8">
+  <form name="form" novalidate ng-submit="$ctrl.submit()">
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
         Upload a CSV file:<br><br>
@@ -11,13 +8,13 @@
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <input placeholder="File" id="file" type="file" name="uploads[]" multiple="multiple">
+        <input placeholder="File(s)" id="file" required type="file" name="uploads[]" multiple="multiple" ng-model="$ctrl.file">
         <br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-      <button type="submit">Upload</button>
+        <button type="submit">Upload</button>
     </div>
   </form>
 </main>
