@@ -4,14 +4,15 @@
   /* global angular, $ */
   /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
-    .component('upload', {
+    .component('csvUpload', {
       controller,
       templateUrl: '/js/upload/upload.template.html',
     });
 
-  controller.$inject = ['$state', '$http', '__env', 'uploadService', 'authService', 'FileUploader'];
-  function controller($state, $http, __env, uploadService, authService, FileUploader) {
+  controller.$inject = ['$state', '$http', '__env', 'authService', 'FileUploader'];
+  function controller($state, $http, __env, authService, FileUploader) {
     const vm = this;
+    vm.header = 'Upload a .CSV file';
     vm.uploader = new FileUploader({
       url: `${__env.apiUrl}/api/upload`,
     });
@@ -28,12 +29,12 @@
     };
 
     vm.uploader.filters.push({
-      name: 'pngFilter',
+      name: 'csvFilter',
       fn: (item) => {
         const nameParts = item.name.split('.');
         if (nameParts.length > 0) {
           const extension = nameParts[nameParts.length - 1];
-          return (extension.toLowerCase() === 'png');
+          return (extension.toLowerCase() === 'csv');
         }
         return false;
       },
@@ -41,14 +42,14 @@
 
     vm.uploader.filters.push({
       name: 'fileSizeFilter',
-      fn: item => item.size < 25600,
+      fn: item => item.size < 2048000,
     });
 
     vm.uploader.onWhenAddingFileFailed = (item, filter) => {
-      if (filter.name === 'pngFilter') {
-        vm.message = 'Invalid file extension. Please select a .PNG file';
+      if (filter.name === 'csvFilter') {
+        vm.message = 'Invalid file extension. Please select a .CSV file';
       } else if (filter.name === 'fileSizeFilter') {
-        vm.message = 'File too large. Please select a file smaller than 25 KB.';
+        vm.message = 'File too large. Please select a file smaller than 2 MB.';
       } else {
         vm.message = 'Something went wrong...';
       }
