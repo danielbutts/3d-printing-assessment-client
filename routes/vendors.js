@@ -88,6 +88,28 @@ router.get('/', authUtils.validateToken, (req, res, next) => {
   });
 });
 
+// router.get('/part/:partId', authUtils.validateToken, (req, res, next) => {
+//   const partId = req.params.partId;
+//   if (partId === undefined) {
+//     res.status(400).json({ error: 'Missing required parameter \'partId\'.' });
+//   } else {
+//     const options = {
+//       method: 'GET',
+//       uri: `${API_URL}/bureaus/part/${partId}`,
+//       headers: {
+//         authorization: req.token,
+//       },
+//       json: true,
+//     };
+//     rp(options).then((result) => {
+//       res.status(200).json(result);
+//     })
+//     .catch((err) => {
+//       next(err);
+//     });
+//   }
+// });
+
 router.post('/:bureauId/printer/:printerId', authUtils.validateToken, (req, res, next) => {
   const bureauId = req.params.bureauId;
   const printerId = req.params.printerId;

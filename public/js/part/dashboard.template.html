@@ -27,7 +27,7 @@
           </th>
         </tr>
         <tr ng-repeat="part in $ctrl.parts">
-          <td><span>{{part.name}}</span></td>
+          <td ng-click="$ctrl.viewRow(part.id)">{{part.name}}</td>
           <td>{{part.width}} x {{part.depth}} x {{part.height}}</span></td>
           <td>{{part.volume}}</span></td>
           <td><span ng-if="part.material !== null">{{part.material.type}}</span></td>

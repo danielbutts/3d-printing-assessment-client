@@ -14,6 +14,7 @@
     this.getPrinters = getPrinters;
     this.addPrinterToVendor = addPrinterToVendor;
     this.removePrinterFromVendor = removePrinterFromVendor;
+    this.getVendorsForPart = getVendorsForPart;
 
     function getVendor(vendorId) {
       const options = {
@@ -30,6 +31,17 @@
       const options = {
         method: 'GET',
         url: `${__env.apiUrl}/api/vendors/`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function getVendorsForPart(partId) {
+      const options = {
+        method: 'GET',
+        url: `${__env.apiUrl}/api/vendors/part/${partId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },

@@ -32,6 +32,11 @@
       component: 'editPart',
     })
     .state({
+      name: 'part-detail',
+      url: '/part-detail/:partId',
+      component: 'partDetail',
+    })
+    .state({
       name: 'login',
       url: '/login',
       component: 'loginForm',

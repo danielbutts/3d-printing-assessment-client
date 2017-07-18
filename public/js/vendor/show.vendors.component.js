@@ -23,14 +23,11 @@
       });
     };
 
-    // TODO This should show a detail page.
     vm.viewRow = (vendorId) => {
-      console.log('vendorId', vendorId);
       $state.go('vendor-detail', { vendorId });
     };
 
     vm.editRow = (vendorId) => {
-      console.log('vendorId', vendorId);
       $state.go('edit-vendor', { vendorId });
     };
   }

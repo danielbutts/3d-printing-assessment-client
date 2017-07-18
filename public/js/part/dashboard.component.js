@@ -22,5 +22,13 @@
         vm.parts = parts;
       });
     };
+
+    vm.viewRow = (partId) => {
+      $state.go('part-detail', { partId });
+    };
+
+    vm.editRow = (partId) => {
+      $state.go('edit-part', { partId });
+    };
   }
 }());

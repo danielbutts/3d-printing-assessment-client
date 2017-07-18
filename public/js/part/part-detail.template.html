@@ -1,0 +1,65 @@
+<navbar></navbar>
+<main class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+        <span class="splash splash-header">Part Detail</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <span class="h4">Name: {{$ctrl.part.name}}</span><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <span class="h4">Material: <span ng-if="ctrl.part.material !== null">{{$ctrl.part.material.type}} ({{$ctrl.part.material.name}})</span></span><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <span class="h4">Width (mm): {{$ctrl.part.width}}</span><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <span class="h4">Depth (mm): {{$ctrl.part.depth}}</span><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-sm-4">
+        <span class="h4">Height (mm): {{$ctrl.part.height}}</span><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <span class="h4">Volume (cm^3): {{$ctrl.part.volume}}</span><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+        <span class="h4">Current Price: ${{$ctrl.part.price}}</span><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <span class="h4">Required Turnaround (days): {{$ctrl.part.maxTurnaround}}</span><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+        <span class="splash splash-header">Available Vendors</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th class="text-center col-xs-3 middle-header light-gray">Name</th>
+            <th class="text-center col-xs-1 middle-header">Zip Code</th>
+            <th class="text-center col-xs-3 middle-header">Printers</th>
+            <th class="text-center col-xs-1 middle-header"></th>
+          </tr>
+          <tr ng-repeat="vendor in $ctrl.vendors" class="hoverable">
+            <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.name}}</td>
+            <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.zipCode}}</td>
+            <td ng-click="$ctrl.viewRow(vendor.id)"><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
+            <td ng-click="$ctrl.editRow(vendor.id)">
+              <h4><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></h4>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</main>
