@@ -1,0 +1,37 @@
+<navbar></navbar>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center section-header">
+      <span class="splash splash-header">Vendors</span>
+      <div class="pull-right">
+        <a ui-sref="new-vendor">
+            <button class="btn btn-default btn-sm light-gray text-center col-xs-12">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Vendor
+            </button>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th class="text-center col-xs-3 middle-header light-gray">Name</th>
+          <th class="text-center col-xs-1 middle-header">Zip Code</th>
+          <th class="text-center col-xs-3 middle-header">Printers</th>
+          <th class="text-center col-xs-1 middle-header"></th>
+        </tr>
+        <tr ng-repeat="vendor in $ctrl.vendors">
+          <td>{{vendor.name}}</td>
+          <td>{{vendor.zipCode}}</span></td>
+          <td><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
+          <td>
+            <a ui-sref="edit-vendor({ vendorId: vendor.id })">
+              <span class="glyphicon glyphicon-alert orange" aria-hidden="true"></span>
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

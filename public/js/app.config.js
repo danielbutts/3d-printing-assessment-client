@@ -37,14 +37,19 @@
       component: 'loginForm',
     })
     .state({
-      name: 'csvUpload',
+      name: 'csv-upload',
       url: '/csv-upload',
       component: 'csvUpload',
     })
     .state({
-      name: 'stlUpload',
+      name: 'stl-upload',
       url: '/stl-upload',
       component: 'stlUpload',
+    })
+    .state({
+      name: 'show-vendors',
+      url: '/vendors',
+      component: 'showVendors',
     });
   }
 }());

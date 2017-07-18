@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const users = require('./routes/users');
 const parts = require('./routes/parts');
+const vendors = require('./routes/vendors');
 const materials = require('./routes/materials');
 const auth = require('./routes/auth');
 const upload = require('./routes/upload');
@@ -33,6 +34,7 @@ app.use('/api/parts', parts);
 app.use('/api/materials', materials);
 app.use('/api/users', users);
 app.use('/api/upload', upload);
+app.use('/api/vendors', vendors);
 
 app.use('*', (req, res) => {
   res.sendFile('index.html', { root: path.join(__dirname, 'public') });
