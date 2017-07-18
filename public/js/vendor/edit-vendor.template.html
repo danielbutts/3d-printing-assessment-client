@@ -63,7 +63,7 @@
         </table>
       </div>
     </div>
-    <div class="row">
+    <div ng-if="$ctrl.printers.length > 0" class="row">
       <div class="h4 col-md-offset-1 col-xs-12 col-md-10 text-right">
         <select ng-options="printer.id as printer.name for printer in $ctrl.printers" name="printerId" id="printerId" ng-model="$ctrl.printerId"></select>
         <button ng-click="$ctrl.addPrinter()" class="btn btn-default btn-sm btn-primary text-center"><h4>Add Printer</h4></button>

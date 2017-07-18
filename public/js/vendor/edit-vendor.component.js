@@ -20,10 +20,31 @@
       }
       vendorService.getVendor(vendorId).then((vendor) => {
         vm.vendor = vendor;
-      });
-      vendorService.getPrinters().then((printers) => {
-        vm.printers = printers;
-        vm.printerId = printers[0].id;
+        vm.vendor.printers = sortObjects(vm.vendor.printers, 'name');
+        vm.vendor.printers = sortObjects(vm.vendor.printers, 'manufacturer');
+        return vendor;
+      })
+      .then((vendor) => {
+        vendorService.getPrinters().then((printers) => {
+          let newPrinters = [];
+          const existingPrinterIds = [];
+          if (vendor.printers !== null) {
+            vendor.printers.forEach((printer) => {
+              existingPrinterIds.push(printer.id);
+            });
+          } else {
+            newPrinters = printers;
+          }
+          printers.forEach((printer) => {
+            if (!existingPrinterIds.includes(printer.id)) {
+              newPrinters.push(printer);
+            }
+          });
+          vm.printers = sortObjects(newPrinters, 'name');
+          if (vm.printers.length > 0) {
+            vm.printerId = vm.printers[0].id;
+          }
+        });
       });
     };
 
@@ -36,13 +57,35 @@
     vm.addPrinter = () => {
       vendorService.addPrinterToVendor(vendorId, vm.printerId).then((result) => {
         vm.vendor.printers = result.printers;
+        vm.vendor.printers = sortObjects(vm.vendor.printers, 'name');
+        vm.vendor.printers = sortObjects(vm.vendor.printers, 'manufacturer');
+        vm.printers = vm.printers.filter(printer => printer.id !== vm.printerId);
+        if (vm.printers.length > 0) {
+          vm.printerId = vm.printers[0].id;
+        }
       });
     };
 
     vm.removePrinter = (printerId) => {
+      const removedPrinter = vm.vendor.printers.filter(printer => printer.id === printerId)[0];
       vendorService.removePrinterFromVendor(vendorId, printerId).then((result) => {
         vm.vendor.printers = result.printers;
+        vm.printers.push(removedPrinter);
+        if (vm.printers.length > 0) {
+          vm.printers = sortObjects(vm.printers, 'name');
+          vm.printerId = vm.printers[0].id;
+        }
       });
     };
+  }
+
+  function sortObjects(array, field, desc) {
+    const sortedArray = array.sort((a, b) => {
+      if (desc) {
+        return (a[field] < b[field]);
+      }
+      return (a[field] > b[field]);
+    });
+    return sortedArray;
   }
 }());
