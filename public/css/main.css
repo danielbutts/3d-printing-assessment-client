@@ -41,8 +41,12 @@ div.message {
   color: red;
 }
 
-span.orange {
-  color: darkorange;
+span.icon {
+  color: #00b7ff;
+}
+
+tr:hover span.icon {
+  color: white !important;
 }
 
 .table {
@@ -82,24 +86,23 @@ th.middle-header {
   color: #6fa9c0;  
 }
 
-.light-gray {
-  color: white; 
-  background-color: #878d95;
-  border-color:  #4e4f50;
-}
-
-.dark-gray {
-  color: white; 
-  background-color: #4e4f50;
-  border-color:  #878d95;
-}
-
 .hidden {
   display: none;
 }
 
+td {
+  text-align: center !important;
+  display:table-cell !important;
+  vertical-align:middle !important;
+  float:none !important;
+}
+
 tr.hoverable:hover {
   background-color: #70cff4 !important;
-  color: white !important;
+  color: white;
+}
+
+td.clickable:hover {
   cursor: pointer !important;
+  color:red !important;
 }

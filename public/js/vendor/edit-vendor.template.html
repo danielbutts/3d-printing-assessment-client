@@ -1,61 +1,85 @@
 <navbar></navbar>
 <main class="container">
-  <form name="form" novalidate ng-submit="$ctrl.submit()">
+  <form name="form" novalidate>
     <div class="row">
       <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
         <span class="splash splash-header">Edit Vendor</span>
-        <div class="pull-right">
-          <a ui-sref="dashboard">
-              <button class="btn btn-default btn-sm light-gray text-center col-xs-12">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
-              </button>
-          </a>
-        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Name" name="name" id="name" type="text" required ng-model="$ctrl.part.name">
+        <input class="h4 col-xs-12" placeholder="Name" name="name" id="name" type="text" required ng-model="$ctrl.vendor.name">
         <br><label for="name">Name</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <select ng-options="material.id as material.type for material in $ctrl.materials" name="materialId" id="materialId" ng-model="$ctrl.part.materialId"></select>
-        <br><label for="materialId">Material</label><br><br>
+        <input class="h4 col-xs-12" placeholder="Zip Code" name="zipCode" id="zipCode" type="text" required ng-model="$ctrl.vendor.zipCode">
+        <br><label for="zipCode">Zip Code</label><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Width" name="width" id="width" type="text" required ng-model="$ctrl.part.width">
-        <br><label for="width">Width (mm)</label><br><br>
+        <input class="h4 col-xs-12" placeholder="Width" name="width" id="width" type="text" required ng-model="$ctrl.vendor.minOrder">
+        <br><label for="width">Minimum Order</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Depth" name="depth" id="depth" type="text" required ng-model="$ctrl.part.depth">
-        <br><label for="depth">Depth (mm)</label><br><br>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-offset-1 col-xs-12 col-sm-4">
-      <input class="col-xs-12" placeholder="Height" name="height" id="height" type="text" required ng-model="$ctrl.part.height">
-        <br><label for="height">Height (mm)</label><br><br>
-      </div>
-      <div class="col-md-offset-2 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Volume" name="volume" id="volume" type="text" required ng-model="$ctrl.part.volume">
-        <br><label for="volume">Volume (cm^3)</label><br><br>
+        <input class="h4 col-xs-12" placeholder="Depth" name="depth" id="depth" type="text" required ng-model="$ctrl.vendor.maxOrder">
+        <br><label for="depth">Maximum Order</label><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Current Price" name="price" id="price" type="text" required ng-model="$ctrl.part.price">
-        <br><label for="price">Current Price ($)</label><br><br>
+      <input class="h4 col-xs-12" placeholder="Margin" name="costFactor" id="margin" type="text" required ng-model="$ctrl.vendor.costFactor">
+        <br><label for="costFactor">Margin (%)</label><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-      <input class="col-xs-12" placeholder="Required Turnaround" name="maxTurnaround" id="maxTurnaround" type="text" required ng-model="$ctrl.part.maxTurnaround">
-        <br><label for="maxTurnaround">Required Turnaround (days)</label><br><br>
+      <input class="h4 col-xs-12" name="turnaround" id="turnaround" type="number" required ng-model="$ctrl.vendor.turnaround">
+        <br><label for="turnaround">Turnaround (days)</label><br><br>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-offset-2 col-xs-12 col-md-8">
-        <button class="btn btn-default btn-sm btn-primary text-center col-md-4 col-xs-12" type="submit" ng-disabled="form.$invalid">Submit</button>
+      <div class="col-xs-12 col-md-offset-1 col-md-10 text-left section-header">
+        <span class="splash splash-header">Printers</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 text-center">
+        <table class="table table-bordered table-striped">
+          <tr>
+            <th class="text-center col-xs-2 middle-header">Manufacturer</th>
+            <th class="text-center col-xs-2 middle-header">Model</th>
+            <th class="text-center col-xs-2 middle-header">Dimensions (mm)</th>
+            <th class="text-center col-xs-3 middle-header">Materials</th>
+            <th class="text-center col-xs-1 middle-header"></th>
+          </tr>
+          <tr ng-repeat="printer in $ctrl.vendor.printers" class="hoverable">
+            <td>{{printer.manufacturer}}</td>
+            <td>{{printer.name}}</td>
+            <td>{{printer.maxWidth}} x {{printer.maxDepth}} x {{printer.maxHeight}}</span></td>
+            <td><span ng-if="printer.materials !== null"><div ng-repeat="material in printer.materials">{{material.type}}</div></span></td>
+            <td class="hoverable clickable red" ng-click="$ctrl.removePrinter(printer.id)">
+              <h4><span class="glyphicon glyphicon-trash icon" aria-hidden="true"></span></h4>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="h4 col-md-offset-1 col-xs-12 col-md-10 text-right">
+        <select ng-options="printer.id as printer.name for printer in $ctrl.printers" name="printerId" id="printerId" ng-model="$ctrl.printerId"></select>
+        <button ng-click="$ctrl.addPrinter()" class="btn btn-default btn-sm btn-primary text-center"><h4>Add Printer</h4></button>
+      </div>
+    </div>
+
+    </div>
+    <div class="row">
+      <br><br>
+      <div class="col-md-offset-1 col-xs-12 col-md-10 text-left">
+        <button class="btn btn-default btn-sm btn-primary text-center" ng-click="$ctrl.submit()" ng-disabled="form.$invalid"><h4>Update Vendor</h4></button>
+        <a ui-sref="show-vendors">
+            <button class="btn btn-default btn-sm light-gray text-center">
+              <h4><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</h4>
+            </button>
+        </a>
       </div>
     </div>
   </form>

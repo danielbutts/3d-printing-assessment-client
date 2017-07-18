@@ -21,11 +21,27 @@
       vendorService.getVendor(vendorId).then((vendor) => {
         vm.vendor = vendor;
       });
+      vendorService.getPrinters().then((printers) => {
+        vm.printers = printers;
+        vm.printerId = printers[0].id;
+      });
     };
 
     vm.submit = () => {
       vendorService.updateVendor(vm.vendor).then(() => {
         $state.go('show-vendors');
+      });
+    };
+
+    vm.addPrinter = () => {
+      vendorService.addPrinterToVendor(vendorId, vm.printerId).then((result) => {
+        vm.vendor.printers = result.printers;
+      });
+    };
+
+    vm.removePrinter = (printerId) => {
+      vendorService.removePrinterFromVendor(vendorId, printerId).then((result) => {
+        vm.vendor.printers = result.printers;
       });
     };
   }

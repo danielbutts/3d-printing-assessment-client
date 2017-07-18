@@ -11,6 +11,9 @@
     this.getVendors = getVendors;
     this.getVendor = getVendor;
     this.updateVendor = updateVendor;
+    this.getPrinters = getPrinters;
+    this.addPrinterToVendor = addPrinterToVendor;
+    this.removePrinterFromVendor = removePrinterFromVendor;
 
     function getVendor(vendorId) {
       const options = {
@@ -42,6 +45,39 @@
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
         data: vendor,
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function getPrinters() {
+      const options = {
+        method: 'GET',
+        url: `${__env.apiUrl}/api/printers/`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function addPrinterToVendor(vendorId, printerId) {
+      const options = {
+        method: 'POST',
+        url: `${__env.apiUrl}/api/vendors/${vendorId}/printer/${printerId}`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function removePrinterFromVendor(vendorId, printerId) {
+      const options = {
+        method: 'DELETE',
+        url: `${__env.apiUrl}/api/vendors/${vendorId}/printer/${printerId}`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
       };
       return $http(options).then(response => response.data);
     }

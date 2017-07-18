@@ -5,7 +5,6 @@ const authUtils = require('../utils/auth-utils');
 const router = express.Router();
 const API_URL = process.env.API_URL; // e.g. 'http://localhost:8080'
 
-// add auth check as middleware
 router.post('/', authUtils.validateToken, (req, res, next) => {
   const { name, zipCode } = req.body;
   if (name === '') {
@@ -87,6 +86,58 @@ router.get('/', authUtils.validateToken, (req, res, next) => {
   .catch((err) => {
     next(err);
   });
+});
+
+router.post('/:bureauId/printer/:printerId', authUtils.validateToken, (req, res, next) => {
+  const bureauId = req.params.bureauId;
+  const printerId = req.params.printerId;
+  if (bureauId === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'bureauId\'.' });
+  } else if (printerId === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'printerId\'.' });
+  } else {
+    const options = {
+      method: 'POST',
+      uri: `${API_URL}/bureaus/${bureauId}/printer/${printerId}`,
+      headers: {
+        authorization: req.token,
+      },
+      body: req.body,
+      json: true,
+    };
+    rp(options).then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
+});
+
+router.delete('/:bureauId/printer/:printerId', authUtils.validateToken, (req, res, next) => {
+  const bureauId = req.params.bureauId;
+  const printerId = req.params.printerId;
+  if (bureauId === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'bureauId\'.' });
+  } else if (printerId === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'printerId\'.' });
+  } else {
+    const options = {
+      method: 'DELETE',
+      uri: `${API_URL}/bureaus/${bureauId}/printer/${printerId}`,
+      headers: {
+        authorization: req.token,
+      },
+      body: req.body,
+      json: true,
+    };
+    rp(options).then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
 });
 
 

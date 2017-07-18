@@ -23,10 +23,10 @@
         </tr>
         <tr ng-repeat="vendor in $ctrl.vendors" class="hoverable">
           <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.name}}</td>
-          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.zipCode}}</span></td>
+          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.zipCode}}</td>
           <td ng-click="$ctrl.viewRow(vendor.id)"><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
           <td ng-click="$ctrl.editRow(vendor.id)">
-            <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
+            <h4><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></h4>
           </td>
         </tr>
       </table>
