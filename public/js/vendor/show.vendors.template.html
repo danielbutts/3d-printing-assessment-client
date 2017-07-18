@@ -21,14 +21,12 @@
           <th class="text-center col-xs-3 middle-header">Printers</th>
           <th class="text-center col-xs-1 middle-header"></th>
         </tr>
-        <tr ng-repeat="vendor in $ctrl.vendors">
-          <td>{{vendor.name}}</td>
-          <td>{{vendor.zipCode}}</span></td>
-          <td><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
-          <td>
-            <a ui-sref="edit-vendor({ vendorId: vendor.id })">
-              <span class="glyphicon glyphicon-alert orange" aria-hidden="true"></span>
-            </a>
+        <tr ng-repeat="vendor in $ctrl.vendors" class="hoverable">
+          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.name}}</td>
+          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.zipCode}}</span></td>
+          <td ng-click="$ctrl.viewRow(vendor.id)"><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
+          <td ng-click="$ctrl.editRow(vendor.id)">
+            <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
           </td>
         </tr>
       </table>

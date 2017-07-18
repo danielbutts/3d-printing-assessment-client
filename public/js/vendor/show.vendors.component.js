@@ -12,6 +12,7 @@
   controller.$inject = ['$state', '$http', '__env', 'vendorService', 'authService'];
   function controller($state, $http, __env, vendorService, authService) {
     const vm = this;
+
     vm.$onInit = () => {
       const token = authService.checkCredentials();
       if (token === false) {
@@ -20,6 +21,17 @@
       vendorService.getVendors().then((vendors) => {
         vm.vendors = vendors;
       });
+    };
+
+    // TODO This should show a detail page.
+    vm.viewRow = (vendorId) => {
+      console.log('vendorId', vendorId);
+      $state.go('vendor-detail', { vendorId });
+    };
+
+    vm.editRow = (vendorId) => {
+      console.log('vendorId', vendorId);
+      $state.go('edit-vendor', { vendorId });
     };
   }
 }());

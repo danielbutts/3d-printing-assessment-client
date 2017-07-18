@@ -97,3 +97,9 @@ th.middle-header {
 .hidden {
   display: none;
 }
+
+tr.hoverable:hover {
+  background-color: #70cff4 !important;
+  color: white !important;
+  cursor: pointer !important;
+}

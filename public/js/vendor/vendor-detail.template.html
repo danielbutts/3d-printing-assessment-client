@@ -1,0 +1,15 @@
+<navbar></navbar>
+<main class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+      <span class="splash splash-header">Vendor Detail</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-1 col-xs-12 col-md-4">
+      Name:<br>{{$ctrl.vendor.name}}
+    </div>
+    <div class="col-md-offset-2 col-xs-12 col-md-4">
+      Printers:<br><span ng-if="$ctrl.vendor.printers !== undefined">We Have Printers</div>
+  </div>
+</main>

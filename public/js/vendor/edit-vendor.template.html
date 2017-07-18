@@ -1,0 +1,68 @@
+<navbar></navbar>
+<main class="container">
+  <form name="form" novalidate ng-submit="$ctrl.submit()">
+    <div class="row">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+        <span class="splash splash-header">Edit Vendor</span>
+        <div class="pull-right">
+          <a ui-sref="dashboard">
+              <button class="btn btn-default btn-sm light-gray text-center col-xs-12">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel
+              </button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Name" name="name" id="name" type="text" required ng-model="$ctrl.part.name">
+        <br><label for="name">Name</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <select ng-options="material.id as material.type for material in $ctrl.materials" name="materialId" id="materialId" ng-model="$ctrl.part.materialId"></select>
+        <br><label for="materialId">Material</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Width" name="width" id="width" type="text" required ng-model="$ctrl.part.width">
+        <br><label for="width">Width (mm)</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Depth" name="depth" id="depth" type="text" required ng-model="$ctrl.part.depth">
+        <br><label for="depth">Depth (mm)</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-sm-4">
+      <input class="col-xs-12" placeholder="Height" name="height" id="height" type="text" required ng-model="$ctrl.part.height">
+        <br><label for="height">Height (mm)</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Volume" name="volume" id="volume" type="text" required ng-model="$ctrl.part.volume">
+        <br><label for="volume">Volume (cm^3)</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-1 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Current Price" name="price" id="price" type="text" required ng-model="$ctrl.part.price">
+        <br><label for="price">Current Price ($)</label><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+      <input class="col-xs-12" placeholder="Required Turnaround" name="maxTurnaround" id="maxTurnaround" type="text" required ng-model="$ctrl.part.maxTurnaround">
+        <br><label for="maxTurnaround">Required Turnaround (days)</label><br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-2 col-xs-12 col-md-8">
+        <button class="btn btn-default btn-sm btn-primary text-center col-md-4 col-xs-12" type="submit" ng-disabled="form.$invalid">Submit</button>
+      </div>
+    </div>
+  </form>
+  <!-- <div class="row">
+    <div class="col-md-offset-2 col-xs-12 col-md-8">
+      <button id="deleteBtn" class="btn btn-default btn-sm btn-danger text-center col-md-4 col-xs-12"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete</button>
+      <button id="confirmBtn" class="btn btn-default btn-sm btn-warning text-center col-md-4 col-xs-12"><span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Confirm</button>
+    </div>
+  </div> -->
+</main>

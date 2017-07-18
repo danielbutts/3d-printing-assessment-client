@@ -50,6 +50,16 @@
       name: 'show-vendors',
       url: '/vendors',
       component: 'showVendors',
+    })
+    .state({
+      name: 'edit-vendor',
+      url: '/edit-vendor/:vendorId',
+      component: 'editVendor',
+    })
+    .state({
+      name: 'vendor-detail',
+      url: '/vendor/:vendorId',
+      component: 'vendorDetail',
     });
   }
 }());
