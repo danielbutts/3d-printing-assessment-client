@@ -9,8 +9,9 @@
       templateUrl: '/js/vendor/edit-vendor.template.html',
     });
 
-  controller.$inject = ['$state', '$stateParams', '$http', '__env', 'vendorService', 'authService'];
-  function controller($state, $stateParams, $http, __env, vendorService, authService) {
+  controller.$inject = ['$state', '$stateParams', '$http', '__env', 'vendorService', 'authService', 'utilsService'];
+  function controller($state, $stateParams, $http, __env,
+    vendorService, authService, utilsService) {
     const vm = this;
     const vendorId = $stateParams.vendorId; // vendorId path parameter
 
@@ -20,8 +21,8 @@
       }
       vendorService.getVendor(vendorId).then((vendor) => {
         vm.vendor = vendor;
-        vm.vendor.printers = sortObjects(vm.vendor.printers, 'name');
-        vm.vendor.printers = sortObjects(vm.vendor.printers, 'manufacturer');
+        vm.vendor.printers = utilsService.sortObjects(vm.vendor.printers, 'name');
+        vm.vendor.printers = utilsService.sortObjects(vm.vendor.printers, 'manufacturer');
         return vendor;
       })
       .then((vendor) => {
@@ -40,7 +41,7 @@
               newPrinters.push(printer);
             }
           });
-          vm.printers = sortObjects(newPrinters, 'name');
+          vm.printers = utilsService.sortObjects(newPrinters, 'name');
           if (vm.printers.length > 0) {
             vm.printerId = vm.printers[0].id;
           }
@@ -57,8 +58,8 @@
     vm.addPrinter = () => {
       vendorService.addPrinterToVendor(vendorId, vm.printerId).then((result) => {
         vm.vendor.printers = result.printers;
-        vm.vendor.printers = sortObjects(vm.vendor.printers, 'name');
-        vm.vendor.printers = sortObjects(vm.vendor.printers, 'manufacturer');
+        vm.vendor.printers = utilsService.sortObjects(vm.vendor.printers, 'name');
+        vm.vendor.printers = utilsService.sortObjects(vm.vendor.printers, 'manufacturer');
         vm.printers = vm.printers.filter(printer => printer.id !== vm.printerId);
         if (vm.printers.length > 0) {
           vm.printerId = vm.printers[0].id;
@@ -72,20 +73,10 @@
         vm.vendor.printers = result.printers;
         vm.printers.push(removedPrinter);
         if (vm.printers.length > 0) {
-          vm.printers = sortObjects(vm.printers, 'name');
+          vm.printers = utilsService.sortObjects(vm.printers, 'name');
           vm.printerId = vm.printers[0].id;
         }
       });
     };
-  }
-
-  function sortObjects(array, field, desc) {
-    const sortedArray = array.sort((a, b) => {
-      if (desc) {
-        return (a[field] < b[field]);
-      }
-      return (a[field] > b[field]);
-    });
-    return sortedArray;
   }
 }());

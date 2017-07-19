@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res, next) => {
-  console.log('POST /upload');
   // create an incoming form object
   const form = new formidable.IncomingForm();
   // specify that we want to allow the user to upload multiple files in a single request
@@ -20,7 +19,6 @@ router.post('/', (req, res, next) => {
   // every time a file has been uploaded successfully,
   // rename it to it's orignal name
   form.on('file', (field, file) => {
-    console.log('file done');
     fs.rename(file.path, path.join(form.uploadDir, file.name));
   });
   // log any errors that occur
@@ -29,7 +27,6 @@ router.post('/', (req, res, next) => {
   });
   // once all the files have been uploaded, send a response to the client
   form.on('end', () => {
-    console.log('upload done');
     res.status(200).json({ message: 'File(s) sucessfulle uploaded.' });
   });
   // parse the incoming request containing the form data

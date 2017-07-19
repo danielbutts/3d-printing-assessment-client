@@ -88,27 +88,65 @@ router.get('/', authUtils.validateToken, (req, res, next) => {
   });
 });
 
-// router.get('/part/:partId', authUtils.validateToken, (req, res, next) => {
-//   const partId = req.params.partId;
-//   if (partId === undefined) {
-//     res.status(400).json({ error: 'Missing required parameter \'partId\'.' });
-//   } else {
-//     const options = {
-//       method: 'GET',
-//       uri: `${API_URL}/bureaus/part/${partId}`,
-//       headers: {
-//         authorization: req.token,
-//       },
-//       json: true,
-//     };
-//     rp(options).then((result) => {
-//       res.status(200).json(result);
-//     })
-//     .catch((err) => {
-//       next(err);
-//     });
-//   }
-// });
+router.get('/part/:partId', authUtils.validateToken, (req, res, next) => {
+  const partId = req.params.partId;
+  if (partId === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'partId\'.' });
+  } else {
+    const options = {
+      method: 'GET',
+      uri: `${API_URL}/bureaus/part/${partId}`,
+      headers: {
+        authorization: req.token,
+      },
+      json: true,
+    };
+    rp(options).then((vendors) => {
+      const rows = [];
+      vendors.forEach((vendor) => {
+        const { turnaround, maxOrder, zipCode } = vendor;
+        if (vendor.printers !== null) {
+          vendor.printers.forEach((printer) => {
+            const {
+              manufacturer,
+              maxWidth,
+              maxDepth,
+              maxHeight,
+              materials,
+              processMultiplier } = printer;
+            if (materials !== null) {
+              const { type, density } = materials[0];
+              rows.push({
+                vendorId: vendor.id,
+                vendorName: vendor.name,
+                turnaround,
+                vendorMargin: vendor.costFactor,
+                maxOrder,
+                zipCode,
+                printerId: printer.id,
+                printerName: printer.name,
+                manufacturer,
+                maxWidth,
+                maxDepth,
+                maxHeight,
+                printingProcess: printer.process,
+                processMultiplier,
+                materialId: materials[0].id,
+                materialName: materials[0].name,
+                type,
+                density,
+              });
+            }
+          });
+        }
+      });
+      res.status(200).json(rows);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
+});
 
 router.post('/:bureauId/printer/:printerId', authUtils.validateToken, (req, res, next) => {
   const bureauId = req.params.bureauId;

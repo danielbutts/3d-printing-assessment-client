@@ -14,7 +14,7 @@
     this.getPrinters = getPrinters;
     this.addPrinterToVendor = addPrinterToVendor;
     this.removePrinterFromVendor = removePrinterFromVendor;
-    this.getVendorsForPart = getVendorsForPart;
+    this.getPrintingOptionsForPart = getPrintingOptionsForPart;
 
     function getVendor(vendorId) {
       const options = {
@@ -38,7 +38,7 @@
       return $http(options).then(response => response.data);
     }
 
-    function getVendorsForPart(partId) {
+    function getPrintingOptionsForPart(partId) {
       const options = {
         method: 'GET',
         url: `${__env.apiUrl}/api/vendors/part/${partId}`,
