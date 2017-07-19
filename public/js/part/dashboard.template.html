@@ -21,6 +21,7 @@
           <th class="text-center col-xs-1 middle-header">Volume (cm^3)</th>
           <th class="text-center col-xs-2 middle-header">Material</th>
           <th class="text-center col-xs-1 middle-header">Current Price</th>
+          <th class="text-center col-xs-1 middle-header">Order Qty</th>
           <th class="text-center col-xs-1 middle-header">Score</th>
           <th class="text-center col-xs-1 middle-header">Edit</th>
         </tr>
@@ -30,6 +31,7 @@
           <td ng-click="$ctrl.viewRow(part.id)">{{part.volume}}</span></td>
           <td ng-click="$ctrl.viewRow(part.id)"><span ng-if="part.material !== null">{{part.material.type}}</span></td>
           <td ng-click="$ctrl.viewRow(part.id)">${{part.price}}</td>
+          <td ng-click="$ctrl.viewRow(part.id)">{{part.orderSize}}</td>
           <td ng-click="$ctrl.viewRow(part.id)">{{part.score}}</td>
           <td ng-click="$ctrl.editRow(part.id)" class="clickable">
             <h4>

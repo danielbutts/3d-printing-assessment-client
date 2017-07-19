@@ -14,42 +14,45 @@
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span class="h4">Name: {{$ctrl.part.name}}</span><br><br>
+        <span>Name: {{$ctrl.part.name}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span class="h4">Material: <span ng-if="ctrl.part.material !== null">{{$ctrl.part.material.type}} ({{$ctrl.part.material.name}})</span></span><br><br>
+        <span>Material: <span ng-if="ctrl.part.material !== null">{{$ctrl.part.material.type}} ({{$ctrl.part.material.name}})</span></span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span class="h4">Width (mm): {{$ctrl.part.width}}</span><br><br>
+        <span>Width (mm): {{$ctrl.part.width}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span class="h4">Depth (mm): {{$ctrl.part.depth}}</span><br><br>
+        <span>Depth (mm): {{$ctrl.part.depth}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-sm-4">
-        <span class="h4">Height (mm): {{$ctrl.part.height}}</span><br><br>
+        <span>Height (mm): {{$ctrl.part.height}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span class="h4">Volume (cm^3): {{$ctrl.part.volume}}</span><br><br>
+        <span>Volume (cm^3): {{$ctrl.part.volume}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span class="h4">Current Price: ${{$ctrl.part.price}}</span><br><br>
+        <span>Current Price: ${{$ctrl.part.price}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span class="h4">Required Turnaround (days): {{$ctrl.part.maxTurnaround}}</span><br><br>
+        <span>Required Turnaround (days): {{$ctrl.part.maxTurnaround}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span class="h4">Strength Critical: 
+        <span>Strength Critical: 
           <span ng-if="$ctrl.part.strengthCritical">Yes</span>
           <span ng-if="!$ctrl.part.strengthCritical">No</span>
         </span><br><br>
+      </div>
+      <div class="col-md-offset-2 col-xs-12 col-md-4">
+        <span>Order Size: {{$ctrl.part.orderSize}}</span><br><br>
       </div>
     </div>
     <div class="row">
