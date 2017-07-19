@@ -41,14 +41,6 @@ div.message {
   color: red;
 }
 
-span.icon {
-  color: #00b7ff;
-}
-
-tr:hover span.icon {
-  color: white !important;
-}
-
 .table {
   background-color: white;
 }
@@ -97,12 +89,30 @@ td {
   float:none !important;
 }
 
+
+tr.hoverable span.icon {
+  color: #00b7ff;
+}
+
+tr.hoverable:hover span.icon {
+  color: white;
+}
+
 tr.hoverable:hover {
   background-color: #70cff4 !important;
   color: white;
 }
 
-td.clickable:hover {
-  cursor: pointer !important;
-  color:red !important;
+tr.hoverable span.warning {
+  color: orange;
 }
+
+tr.hoverable:hover span.warning {
+  color: darkorange;
+}
+
+td.clickable:hover span.danger{
+  cursor: pointer;
+  color:red;
+}
+

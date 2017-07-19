@@ -23,6 +23,7 @@
     };
 
     vm.submit = () => {
+      console.log(vm.part);
       partsService.createPart(vm.part).then(() => {
         $state.go('dashboard');
       });

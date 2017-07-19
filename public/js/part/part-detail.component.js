@@ -29,31 +29,32 @@
         vendorService.getVendors().then((vendors) => {
           const validVendors = [];
           vendors.forEach((vendor) => {
-            console.log(vendor.name);
             const validPrinters = [];
             if (vendor.printers != null) {
               vendor.printers.forEach((printer) => {
-                console.log('printer: ', printer.name);
                 let isValidPrinter = true;
                 const materialIds = printer.materials.map(material => material.id);
                 if (!materialIds.includes(part.material.id)) {
-                  console.log('cannot print material');
+                  // console.log('material');
                   isValidPrinter = false;
                 }
                 if (printer.maxWidth < part.width) {
-                  console.log('insufficient width');
+                  // console.log('part.width');
                   isValidPrinter = false;
                 }
                 if (printer.maxDepth < part.depth) {
-                  console.log('insufficient depth');
+                  // console.log('part.depth');
                   isValidPrinter = false;
                 }
                 if (printer.maxHeight < part.height) {
-                  console.log('insufficient height');
+                  // console.log('part.height');
+                  isValidPrinter = false;
+                }
+                if (part.strengthCritical && printer.process !== 'DMLS') {
+                  // console.log('part.strengthCritical', part.strengthCritical, printer.process);
                   isValidPrinter = false;
                 }
                 if (isValidPrinter) {
-                  console.log('valid printer');
                   validPrinters.push(printer);
                 }
               });
@@ -65,7 +66,6 @@
               if (vendor.turnaround > part.maxTurnaround) { isValidVendor = false; }
 
               if (isValidVendor) {
-                console.log('valid vendor');
                 validVendors.push(vendor);
               }
             }

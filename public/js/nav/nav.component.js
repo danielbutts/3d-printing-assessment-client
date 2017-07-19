@@ -17,6 +17,7 @@
     vm.logout = () => {
       authService.logout();
       $state.go('home');
+      $state.reload();
     };
 
     vm.$onInit = () => {
