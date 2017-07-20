@@ -1,4 +1,12 @@
 <navbar></navbar>
+
+<div class="col-md-offset-1 col-xs-10">
+  <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data"
+  chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
+  chart-dataset-override="$ctrl.datasetOverride">
+  </canvas>
+</div>
+
 <main class="container">
   <div class="pull-right">
     <a <a ui-sref="edit-part({ partId: $ctrl.part.id })">

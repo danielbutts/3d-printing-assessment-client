@@ -11,9 +11,11 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.5",
     "angular": "^1.6.5",
+    "angular-chart.js": "^1.1.1",
     "angular-file-upload": "^2.5.0",
     "bcrypt-as-promised": "^1.1.0",
     "body-parser": "~1.17.1",
+    "chart.js": "^2.6.0",
     "cookie-parser": "~1.4.3",
     "cookie-session": "^2.0.0-beta.2",
     "debug": "~2.6.3",
@@ -27,7 +29,8 @@
     "pg": "^6.4.0",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "serve-favicon": "~2.4.2"
+    "serve-favicon": "~2.4.2",
+    "tc-angular-chartjs": "^2.1.4"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

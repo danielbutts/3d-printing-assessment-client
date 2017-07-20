@@ -11,6 +11,6 @@
   }
 
   // Define AngularJS application
-  angular.module('app', ['ui.router', 'angularFileUpload'])
+  angular.module('app', ['ui.router', 'angularFileUpload', 'chart.js'])
   .constant('__env', env);
 }());
