@@ -35,7 +35,6 @@
           });
           utilsService.sortObjects(options, 'cost');
           vm.options = options;
-          console.log(options);
           return options;
         })
         .then((options) => {
@@ -59,15 +58,14 @@
               labels.push(data.length + 1);
               current.push(part.price);
               data.push((total) / (data.length + 1));
-              console.log(part.orderSize, data.length);
               if (data.length === part.orderSize) {
+                // TODO get max height of graph and replace hardcoded value.
                 target.push(1200);
               } else {
                 target.push(0);
               }
             }
           }
-          vm.colors = ['#ff8e72', '#45b7cd', '#ff6384'];
 
           vm.labels = labels;
           vm.data = [current, data, target];
@@ -76,6 +74,7 @@
               fill: 'none',
               label: ' Current Cost',
               borderWidth: 4,
+              backgroundColor: 'rgba(255,99,132,1)',
               borderColor: 'rgba(255,99,132,1)',
               borderDash: [10, 5],
               type: 'line',
@@ -83,7 +82,7 @@
             }, {
               label: ' Estimated Price',
               borderWidth: 3,
-              backgroundColor: 'rgba(112,207,244,0.25)',
+              backgroundColor: 'rgba(112,207,244,.25)',
               borderColor: 'rgba(112,207,244,1)',
               pointBorderColor: 'rgba(112,207,244,1)',
               type: 'line',
@@ -120,7 +119,6 @@
             },
             tooltips: {
               custom: (tooltipModel) => {
-                console.log(tooltipModel);
                 if (tooltipModel.body && tooltipModel.body[2]) {
                   tooltipModel.body.splice(2, 1);
                   // tooltipModel.body[2].lines[0] = ` Target Quantity ${part.orderSize}`;
