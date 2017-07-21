@@ -27,17 +27,19 @@
         vm.part = part;
         return part;
       }).then((part) => {
-        vendorService.getPrintingOptionsForPart(part.id).then((options) => {
-          options.forEach((option) => {
+        vendorService.getPrintingOptionsForPart(part.id).then((printingOptions) => {
+          printingOptions.forEach((option) => {
             option.cost = part.volume *
             part.basePriceMultiplier * part.materialMultiplier *
             option.processMultiplier * option.vendorMargin;
           });
-          utilsService.sortObjects(options, 'cost');
-          vm.options = options;
-          return options;
+          utilsService.sortObjects(printingOptions, 'cost');
+          return printingOptions;
         })
-        .then((options) => {
+        .then((printingOptions) => {
+          vm.printingOptions = printingOptions;
+          console.log(vm.printingOptions);
+
           const data = [];
           const labels = [];
           const current = [];
@@ -45,22 +47,22 @@
           let total = 0;
 
           const rangeMax = part.orderSize * 2;
-          for (let i = 0; i < options.length; i += 1) {
+          for (let i = 0; i < printingOptions.length; i += 1) {
             if (data.length > rangeMax) {
               break;
             }
-            for (let j = 0; j < options[i].maxOrder; j += 1) {
+            for (let j = 0; j < printingOptions[i].maxOrder; j += 1) {
               if (data.length > rangeMax) {
                 break;
               }
-              total += options[i].cost;
+              total += printingOptions[i].cost;
 
               labels.push(data.length + 1);
               current.push(part.price);
               data.push((total) / (data.length + 1));
               if (data.length === part.orderSize) {
                 // TODO get max height of graph and replace hardcoded value.
-                target.push(1200);
+                target.push(4500);
               } else {
                 target.push(0);
               }
