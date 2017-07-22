@@ -85,5 +85,27 @@ router.get('/:id', authUtils.validateToken, (req, res, next) => {
   }
 });
 
+router.get('/:id/cost', authUtils.validateToken, (req, res, next) => {
+  const id = req.params.id;
+  if (id === undefined) {
+    res.status(400).json({ error: 'Missing required parameter \'id\'.' });
+  } else {
+    const options = {
+      method: 'GET',
+      uri: `${API_URL}/parts/${id}/cost`,
+      headers: {
+        authorization: req.token,
+      },
+      json: true,
+    };
+    rp(options).then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+  }
+});
+
 
 module.exports = router;

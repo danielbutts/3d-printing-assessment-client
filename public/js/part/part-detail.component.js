@@ -9,9 +9,9 @@
       templateUrl: '/js/part/part-detail.template.html',
     });
 
-  controller.$inject = ['$state', '$stateParams', '$http', '__env', 'partsService', 'vendorService', 'authService', 'utilsService'];
+  controller.$inject = ['$state', '$stateParams', '$http', '__env', 'partsService', 'vendorService', 'authService'];
   function controller($state, $stateParams, $http, __env, partsService,
-    vendorService, authService, utilsService) {
+    vendorService, authService) {
     const vm = this;
     const partId = $stateParams.partId; // partId path parameter
 
@@ -27,18 +27,9 @@
         vm.part = part;
         return part;
       }).then((part) => {
-        vendorService.getPrintingOptionsForPart(part.id).then((printingOptions) => {
-          printingOptions.forEach((option) => {
-            option.cost = part.volume *
-            part.basePriceMultiplier * part.materialMultiplier *
-            option.processMultiplier * option.vendorMargin;
-          });
-          utilsService.sortObjects(printingOptions, 'cost');
-          return printingOptions;
-        })
-        .then((printingOptions) => {
-          vm.printingOptions = printingOptions;
+        partsService.getPrintingPricesForPart(part.id).then((printingOptions) => {
           console.log(vm.printingOptions);
+          vm.printingOptions = printingOptions;
 
           const data = [];
           const labels = [];
@@ -51,16 +42,16 @@
             if (data.length > rangeMax) {
               break;
             }
-            for (let j = 0; j < printingOptions[i].maxOrder; j += 1) {
+            for (let j = 0; j < printingOptions[i].printQuantity; j += 1) {
               if (data.length > rangeMax) {
                 break;
               }
-              total += printingOptions[i].cost;
+              total += printingOptions[i].unitPrice;
 
               labels.push(data.length + 1);
-              current.push(part.price);
+              current.push(printingOptions[i].part.price);
               data.push((total) / (data.length + 1));
-              if (data.length === part.orderSize) {
+              if (data.length === printingOptions[i].part.orderSize) {
                 // TODO get max height of graph and replace hardcoded value.
                 target.push(4500);
               } else {

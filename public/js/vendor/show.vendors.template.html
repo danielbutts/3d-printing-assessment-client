@@ -20,13 +20,15 @@
           <th class="text-center col-xs-1 middle-header">Zip Code</th>
           <th class="text-center col-xs-1 middle-header">Margin</th>
           <th class="text-center col-xs-3 middle-header">Printers</th>
+          <th class="text-center col-xs-1 middle-header">Max Order</th>
           <th class="text-center col-xs-1 middle-header">Edit</th>
         </tr>
         <tr ng-repeat="vendor in $ctrl.vendors" class="hoverable">
-          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.name}}</td>
-          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.zipCode}}</td>
-          <td ng-click="$ctrl.viewRow(vendor.id)">{{vendor.costFactor}}</td>
-          <td ng-click="$ctrl.viewRow(vendor.id)"><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
+          <td ng-click="$ctrl.editRow(vendor.id)">{{vendor.name}}</td>
+          <td ng-click="$ctrl.editRow(vendor.id)">{{vendor.zipCode}}</td>
+          <td ng-click="$ctrl.editRow(vendor.id)">{{vendor.costFactor}}</td>
+          <td ng-click="$ctrl.editRow(vendor.id)"><span ng-if="vendor.printers !== null"><div ng-repeat="printer in vendor.printers">{{printer.name}}</div></span></td>
+          <td ng-click="$ctrl.editRow(vendor.id)">{{vendor.maxOrder}}</td>
           <td ng-click="$ctrl.editRow(vendor.id)">
             <h4><span class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span></h4>
           </td>

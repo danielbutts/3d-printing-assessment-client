@@ -13,6 +13,7 @@
     this.getPart = getPart;
     this.createPart = createPart;
     this.updatePart = updatePart;
+    this.getPrintingPricesForPart = getPrintingPricesForPart;
 
     function getMaterials() {
       const options = {
@@ -40,6 +41,17 @@
       const options = {
         method: 'GET',
         url: `${__env.apiUrl}/api/parts/${partId}`,
+        headers: {
+          authorization: window.localStorage.getItem(__env.authTokenKey),
+        },
+      };
+      return $http(options).then(response => response.data);
+    }
+
+    function getPrintingPricesForPart(partId) {
+      const options = {
+        method: 'GET',
+        url: `${__env.apiUrl}/api/parts/${partId}/cost`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },

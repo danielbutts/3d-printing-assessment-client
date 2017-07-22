@@ -9,8 +9,9 @@
       templateUrl: '/js/vendor/show.vendors.template.html',
     });
 
-  controller.$inject = ['$state', '$http', '__env', 'vendorService', 'authService'];
-  function controller($state, $http, __env, vendorService, authService) {
+  controller.$inject = ['$state', '$http', '__env', 'vendorService', 'authService', 'utilsService'];
+  function controller($state, $http, __env,
+    vendorService, authService, utilsService) {
     const vm = this;
 
     vm.$onInit = () => {
@@ -19,6 +20,7 @@
         $state.go('login');
       }
       vendorService.getVendors().then((vendors) => {
+        utilsService.sortObjects(vendors, 'name');
         vm.vendors = vendors;
       });
     };

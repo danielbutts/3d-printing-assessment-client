@@ -87,29 +87,27 @@
           </tr>
           <tr ng-repeat="option in $ctrl.printingOptions">
             <td>
-              <div>{{option.vendorName}}</div>
-              <div>Zip Code: {{option.zipCode}}</div>
-              <div>Turnaround: {{option.turnaround}}</div>
-              <div>Max Qty: {{option.maxOrder}}</div>
-              <div>Margin: {{option.vendorMargin}}</div>
+              <div>{{option.bureau.name}}</div>
+              <div>Zip Code: {{option.bureau.zipCode}}</div>
+              <div>Turnaround: {{option.bureau.turnaround}}</div>
+              <div>Max Qty: {{option.bureau.maxOrder}}</div>
+              <div>Margin: {{option.bureau.costFactor}}</div>
             </td>
             <td>
-              <div>{{option.manufacturer}}</div>
-              <div>{{option.printerName}}</div>
-              <div>Dimensions: {{option.maxWidth}}x{{option.maxDepth}}x{{option.maxHeight}}</div>
-              <div>Process: {{option.printingProcess}}</div>
+              <div>{{option.printer.manufacturer}}</div>
+              <div>{{option.printer.name}}</div>
+              <div>Dimensions: {{option.printer.maxWidth}}x{{option.printer.maxDepth}}x{{option.printer.maxHeight}}</div>
+              <div>Process: {{option.printer.process}}</div>
             </td>
             <td>
-              <div>{{option.type}}</div>
-              <div>{{option.materialName}}</div>
-              <div>Density: {{option.materialName}}</div>
+              <div>{{option.printer.material.type}}</div>
+              <div>{{option.printer.material.name}}</div>
+              <div>Density: {{option.part.material.density}}</div>
             </td>
             <td>
               <div>Volume: {{$ctrl.part.volume | number : 2}}</div>
-              <div>volume x: {{$ctrl.part.basePriceMultiplier | number : 2}}</div>
-              <div>material x: {{$ctrl.part.materialMultiplier | number : 2}}</div>
-              <div>process x: {{option.processMultiplier | number : 2}}</div>
-              <div>Cost: ${{option.cost | number : 2}}</div>
+              <div>Unit Price: {{option.unitPrice | number : 2}}</div>
+              <div>Print Quantity: {{option.printQuantity | number : 0}}</div>
             </td>
             <td>
               TBD
