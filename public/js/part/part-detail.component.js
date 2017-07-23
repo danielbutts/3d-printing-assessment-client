@@ -28,6 +28,7 @@
         return part;
       }).then((part) => {
         partsService.getPrintingPricesForPart(part.id).then((printingOptions) => {
+          // const modulus = Math.round(printingOptions.length / 20);
           console.log(vm.printingOptions);
           vm.printingOptions = printingOptions;
 
@@ -46,14 +47,14 @@
               if (data.length > rangeMax) {
                 break;
               }
-              total += printingOptions[i].unitPrice;
+              total += printingOptions[i].prices[j];
 
               labels.push(data.length + 1);
               current.push(printingOptions[i].part.price);
               data.push((total) / (data.length + 1));
               if (data.length === printingOptions[i].part.orderSize) {
                 // TODO get max height of graph and replace hardcoded value.
-                target.push(4500);
+                target.push(3000);
               } else {
                 target.push(0);
               }
