@@ -2,7 +2,7 @@
   window.__env = window.__env || {};
 
   // API url
-  window.__env.apiUrl = 'https://parts-analyzer-api.herokuapp.com';
+  window.__env.apiUrl = 'https://parts-analyzer.herokuapp.com';
 
   window.__env.authTokenKey = 'partridge-auth-token'
   window.__env.authUserIdKey = 'partridge-auth-userid'
