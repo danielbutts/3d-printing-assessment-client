@@ -1,6 +1,9 @@
 {
   "name": "portfolio-analysis-client",
   "version": "0.0.0",
+  "engines": {
+    "node": "7.10.0"
+  },
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
