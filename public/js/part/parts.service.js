@@ -18,7 +18,7 @@
     function getMaterials() {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/materials/`,
+        url: `/api/materials/`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -29,7 +29,7 @@
     function getPartsForUser(userId) {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/users/${userId}`,
+        url: `/api/users/${userId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -40,7 +40,7 @@
     function getPart(partId) {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/parts/${partId}`,
+        url: `/api/parts/${partId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -51,7 +51,7 @@
     function getPrintingPricesForPart(partId) {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/parts/${partId}/cost`,
+        url: `/api/parts/${partId}/cost`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -62,7 +62,7 @@
     function createPart(part) {
       const options = {
         method: 'POST',
-        url: `${__env.apiUrl}/api/parts`,
+        url: `/api/parts`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -74,7 +74,7 @@
     function updatePart(part) {
       const options = {
         method: 'PATCH',
-        url: `${__env.apiUrl}/api/parts`,
+        url: `/api/parts`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },

@@ -13,7 +13,7 @@
     this.logout = logout;
 
     function authenticate(login) {
-      return $http.post(`${__env.apiUrl}/api/login`, login).then((response) => {
+      return $http.post(`/api/login`, login).then((response) => {
         const token = response.data.token;
         const userId = response.data.userId;
         const username = response.data.username;

@@ -19,7 +19,7 @@
     function getVendor(vendorId) {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/vendors/${vendorId}`,
+        url: `/api/vendors/${vendorId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -30,7 +30,7 @@
     function getVendors() {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/vendors/`,
+        url: `/api/vendors/`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -41,7 +41,7 @@
     function getPrintingOptionsForPart(partId) {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/vendors/part/${partId}`,
+        url: `/api/vendors/part/${partId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -52,7 +52,7 @@
     function updateVendor(vendor) {
       const options = {
         method: 'PATCH',
-        url: `${__env.apiUrl}/api/vendors`,
+        url: `/api/vendors`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -64,7 +64,7 @@
     function getPrinters() {
       const options = {
         method: 'GET',
-        url: `${__env.apiUrl}/api/printers/`,
+        url: `/api/printers/`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -75,7 +75,7 @@
     function addPrinterToVendor(vendorId, printerId) {
       const options = {
         method: 'POST',
-        url: `${__env.apiUrl}/api/vendors/${vendorId}/printer/${printerId}`,
+        url: `/api/vendors/${vendorId}/printer/${printerId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -86,7 +86,7 @@
     function removePrinterFromVendor(vendorId, printerId) {
       const options = {
         method: 'DELETE',
-        url: `${__env.apiUrl}/api/vendors/${vendorId}/printer/${printerId}`,
+        url: `/api/vendors/${vendorId}/printer/${printerId}`,
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },

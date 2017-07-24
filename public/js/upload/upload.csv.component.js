@@ -14,7 +14,7 @@
     const vm = this;
     vm.header = 'Upload a .CSV file';
     vm.uploader = new FileUploader({
-      url: `${__env.apiUrl}/api/upload`,
+      url: `/api/upload`,
     });
 
 
