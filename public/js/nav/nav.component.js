@@ -9,15 +9,18 @@
       templateUrl: '/js/nav/nav.template.html',
     });
 
-  controller.$inject = ['$state', 'authService', '__env'];
-  function controller($state, authService, __env) {
+  controller.$inject = ['$location', '$state', 'authService', '__env'];
+  function controller($location, $state, authService, __env) {
     const vm = this;
     vm.username = window.localStorage.getItem(__env.authUsernameKey);
 
     vm.logout = () => {
       authService.logout();
+      const url = $location.url();
       $state.go('home');
-      $state.reload();
+      if (url === '/') {
+        $state.reload();
+      }
     };
 
     vm.$onInit = () => {
