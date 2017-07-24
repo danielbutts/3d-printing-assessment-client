@@ -55,12 +55,28 @@ div.message {
 }
 
 .splash-title {
-  font-size: 60px;
+  font-size: 55px;
+}
+
+.splash-subtext {
+  font-family: 'Squada One', cursive;
+  color: #878d95;
+  font-size: 25px;
+}
+
+.logo {
+  height:150px;
+}
+
+.small-logo {
+  height:100px;
 }
 
 .splash-text {
-  font-size: 25px;
+  font-size: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
   color: #878d95;
+  /*letter-spacing: 1px;*/
 }
 
 th.middle-header {
@@ -103,8 +119,17 @@ tr.hoverable:hover {
   color: white;
 }
 
+tr.hoverable:hover td:hover.test {
+  background-color: darkorange !important;
+  color: white;
+}
+
+tr.hoverable:hover td.test {
+  background-color: white !important;
+}
+
 tr.hoverable span.warning {
-  color: orange;
+  color: darkorange;
 }
 
 tr.hoverable:hover span.warning {

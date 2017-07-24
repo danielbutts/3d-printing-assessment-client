@@ -23,6 +23,7 @@
           <th class="text-center col-xs-1 middle-header">Current Price</th>
           <th class="text-center col-xs-1 middle-header">Order Qty</th>
           <th class="text-center col-xs-1 middle-header">Score</th>
+          <th class="text-center col-xs-1 middle-header">Detail</th>
           <th class="text-center col-xs-1 middle-header">Edit</th>
         </tr>
         <tr ng-repeat="part in $ctrl.parts" class="hoverable">
@@ -33,7 +34,12 @@
           <td ng-click="$ctrl.viewRow(part.id)">${{part.price}}</td>
           <td ng-click="$ctrl.viewRow(part.id)">{{part.orderSize}}</td>
           <td ng-click="$ctrl.viewRow(part.id)">{{part.score}}</td>
-          <td ng-click="$ctrl.editRow(part.id)" class="clickable">
+          <td ng-click="$ctrl.viewRow(part.id)" class="clickable">
+            <h4>
+              <span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>
+            </h4>
+          </td>
+          <td ng-click="$ctrl.editRow(part.id)" class="clickable test">
             <h4>
               <span ng-if="!part.isValid" class="glyphicon glyphicon-alert warning" aria-hidden="true"></span>
               <span ng-if="part.isValid" class="glyphicon glyphicon-pencil icon" aria-hidden="true"></span>
