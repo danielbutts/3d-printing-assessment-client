@@ -26,9 +26,9 @@
     }
 
     function checkCredentials() {
-      // TODO - pass current token and userId to a verification route on the 
+      // TODO - pass current token and userId to a verification route on the
       // server to determine validity of token and match to userId
-      
+
       const token = window.localStorage.getItem(__env.authTokenKey);
       if (token) {
         return true;
