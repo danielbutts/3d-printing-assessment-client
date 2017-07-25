@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  /* global angular */
+  /* global angular, window */
   /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
     .component('partDetail', {
@@ -16,6 +16,9 @@
     const partId = $stateParams.partId; // partId path parameter
 
     vm.$onInit = () => {
+      const isAdmin = window.localStorage.getItem(__env.authAdminKey);
+      vm.isAdmin = (isAdmin === 'true');
+
       vm.chart = [];
       if (authService.checkCredentials() === false) {
         $state.go('login');
@@ -29,7 +32,7 @@
       }).then((part) => {
         partsService.getPrintingPricesForPart(part.id).then((printingOptions) => {
           // const modulus = Math.round(printingOptions.length / 20);
-          console.log(vm.printingOptions);
+          // console.log(printingOptions);
           vm.printingOptions = printingOptions;
 
           const data = [];

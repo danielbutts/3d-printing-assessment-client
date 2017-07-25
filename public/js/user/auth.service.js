@@ -13,27 +13,29 @@
     this.logout = logout;
 
     function authenticate(login) {
-      return $http.post('/api/login', login).then((response) => {
+      return $http.post('/api/auth', login).then((response) => {
+        // console.log('authenticate(login)', response);
         const token = response.data.token;
         const userId = response.data.userId;
         const username = response.data.username;
+        const isAdmin = response.data.isAdmin;
         window.localStorage.setItem(__env.authTokenKey, token);
         window.localStorage.setItem(__env.authUserIdKey, userId);
         window.localStorage.setItem(__env.authUsernameKey, username);
+        window.localStorage.setItem(__env.authAdminKey, isAdmin);
         $http.defaults.headers.common.Authorization = token;
         return response.data;
       });
     }
 
     function checkCredentials() {
-      // TODO - pass current token and userId to a verification route on the
-      // server to determine validity of token and match to userId
-
       const token = window.localStorage.getItem(__env.authTokenKey);
-      if (token) {
-        return true;
+      $http.defaults.headers.common.Authorization = token;
+      if (token !== undefined && token !== null) {
+        // console.log('checkCredentials', token);
+        return $http.get('/api/auth/validate', token).then(response => response.data);
       }
-      return false;
+      return Promise.reject('not authenticated');
     }
 
     function logout() { // eslint-disable-line no-unused-vars
@@ -41,6 +43,7 @@
       window.localStorage.removeItem(__env.authTokenKey);
       window.localStorage.removeItem(__env.authUsernameKey);
       window.localStorage.removeItem(__env.authUserIdKey);
+      window.localStorage.removeItem(__env.authAdminKey);
     }
 
     // function register(user) {

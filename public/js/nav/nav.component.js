@@ -24,11 +24,10 @@
     };
 
     vm.$onInit = () => {
-      if (authService.checkCredentials()) {
-        vm.isAuthenticated = true;
-      } else {
-        vm.isAuthenticated = false;
-      }
+      const token = window.localStorage.getItem(__env.authTokenKey);
+      const isAdmin = window.localStorage.getItem(__env.authAdminKey);
+      vm.isAdmin = (isAdmin === 'true');
+      vm.isAuthenticated = (token !== null);
     };
   }
 }());

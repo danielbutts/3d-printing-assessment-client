@@ -14,12 +14,15 @@
     const vm = this;
     const userId = window.localStorage.getItem(__env.authUserIdKey);
     vm.$onInit = () => {
-      const token = authService.checkCredentials();
-      if (token === false) {
-        $state.go('login');
-      }
-      partsService.getPartsForUser(userId).then((parts) => {
-        vm.parts = parts;
+      authService.checkCredentials().then((result) => {
+        // console.log(result);
+        const token = result.token;
+        if (token === false) {
+          $state.go('login');
+        }
+        partsService.getPartsForUser(userId).then((parts) => {
+          vm.parts = parts;
+        });
       });
     };
 

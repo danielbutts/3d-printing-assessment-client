@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jwt-simple');
 const rp = require('request-promise');
+const authUtils = require('../utils/auth-utils');
 require('dotenv').config();
 
 const router = express.Router();
@@ -31,6 +32,7 @@ router.post('/', (req, res, next) => {
       const authorizedUser = {
         token: response.headers.authorization,
         userId: response.headers.userid,
+        isAdmin: response.headers.isadmin,
       };
 
       const clientToken = jwt.encode(authorizedUser, JWT_SECRET);
@@ -39,6 +41,7 @@ router.post('/', (req, res, next) => {
         token: clientToken,
         username: response.headers.username,
         userId: response.headers.userid,
+        isAdmin: response.headers.isadmin,
       });
     })
     .catch((err) => {
@@ -47,5 +50,16 @@ router.post('/', (req, res, next) => {
   }
 });
 
+router.get('/validate', authUtils.validateToken, (req, res) => {
+  if (req.token === undefined) {
+    res.status(400).json({ error: 'Token must not be blank' });
+  } else {
+    res.status(200).json({
+      token: req.token,
+      userId: req.userId,
+      admin: req.isAdmin,
+    });
+  }
+});
 
 module.exports = router;

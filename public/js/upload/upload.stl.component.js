@@ -14,9 +14,8 @@
     const vm = this;
     vm.header = 'Upload a .STL file';
     vm.uploader = new FileUploader({
-      url: `/api/upload`,
+      url: '/api/upload',
     });
-
 
     vm.$onInit = () => {
       if (authService.checkCredentials() === false) {

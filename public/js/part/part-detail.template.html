@@ -70,12 +70,12 @@
         <span>Order Size: {{$ctrl.part.orderSize}}</span><br><br>
       </div>
     </div>
-    <div class="row">
+    <div ng-if="$ctrl.isAdmin === true" class="row">
       <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
         <span class="splash splash-header">Printing Options</span>
       </div>
     </div>
-    <div class="row">
+    <div ng-if="$ctrl.isAdmin === true" class="row">
       <div class="col-xs-12 text-center">
         <table class="table table-bordered table-striped">
           <tr>

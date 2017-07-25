@@ -30,7 +30,7 @@ app.use(cookieSession({
 }));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon-32x32.png')));
 
-app.use('/api/login', auth);
+app.use('/api/auth', auth);
 app.use('/api/parts', parts);
 app.use('/api/materials', materials);
 app.use('/api/users', users);
