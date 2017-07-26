@@ -31,7 +31,7 @@
 
     vm.submit = () => {
       partsService.updatePart(vm.part).then(() => {
-        $state.go('dashboard');
+        $state.go('part-detail');
       });
     };
   }
