@@ -31,7 +31,7 @@
 
     vm.submit = () => {
       partsService.updatePart(vm.part).then(() => {
-        $state.go('part-detail');
+        $state.go('part-detail', { partId: vm.part.id });
       });
     };
   }
