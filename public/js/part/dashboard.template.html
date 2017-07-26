@@ -33,7 +33,9 @@
           <td ng-click="$ctrl.viewRow(part.id)"><span ng-if="part.material !== null">{{part.material.type}}</span></td>
           <td ng-click="$ctrl.viewRow(part.id)">${{part.price}}</td>
           <td ng-click="$ctrl.viewRow(part.id)">{{part.orderSize}}</td>
-          <td ng-click="$ctrl.viewRow(part.id)">{{part.score}}</td>
+          <td ng-click="$ctrl.viewRow(part.id)" class="background-{{part.scoreBackground}}">
+              <div>{{part.score | number : 0}}</div>
+          </td>
           <td ng-click="$ctrl.viewRow(part.id)" class="clickable">
             <h4>
               <span class="glyphicon glyphicon-search icon" aria-hidden="true"></span>

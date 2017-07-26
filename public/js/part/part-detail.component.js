@@ -42,6 +42,8 @@
           let total = 0;
 
           const rangeMax = part.orderSize * 2;
+          let minPrice;
+          let optimalQty;
           for (let i = 0; i < printingOptions.length; i += 1) {
             if (data.length > rangeMax) {
               break;
@@ -53,8 +55,14 @@
               total += printingOptions[i].prices[j];
 
               labels.push(data.length + 1);
-              current.push(printingOptions[i].part.price);
-              data.push((total) / (data.length + 1));
+              current.push(part.price);
+              const unitPrice = (total) / (data.length + 1);
+              data.push(unitPrice);
+              if (minPrice === undefined || unitPrice < minPrice) {
+                minPrice = unitPrice;
+                optimalQty = data.length;
+              }
+
               if (data.length === printingOptions[i].part.orderSize) {
                 // TODO get max height of graph and replace hardcoded value.
                 target.push(3000);
@@ -63,7 +71,32 @@
               }
             }
           }
+          if (part.price !== undefined && minPrice !== undefined) {
+            vm.score = (part.price / minPrice) * 100;
+            switch (true) {
+              case vm.score < 25:
+                vm.scoreBackground = 'red';
+                break;
+              case vm.score < 50:
+                vm.scoreBackground = 'orange';
+                break;
+              case vm.score < 75:
+                vm.scoreBackground = 'yellow';
+                break;
+              default:
+                vm.scoreBackground = 'green';
+            }
+            vm.minPrice = minPrice;
+            vm.optimalQty = optimalQty;
+          }
+          if (data.length === 0) {
+            vm.validGraph = false;
+            vm.message = 'No printing options are available for this part.';
+          } else {
+            vm.validGraph = true;
+          }
 
+          vm.minPrice = minPrice;
           vm.labels = labels;
           vm.data = [current, data, target];
           vm.datasetOverride = [

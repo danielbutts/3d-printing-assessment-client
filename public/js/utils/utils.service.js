@@ -13,6 +13,8 @@
 
     function sortObjects(array, field, desc) {
       const sortedArray = array.sort((a, b) => {
+        if (a[field] === null || a[field] === undefined) return true;
+        if (b[field] === null || b[field] === undefined) return false;
         if (desc) {
           return (a[field] < b[field]);
         }

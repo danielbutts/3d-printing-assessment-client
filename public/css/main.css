@@ -141,3 +141,22 @@ td.clickable:hover span.danger{
   color:red;
 }
 
+td.background-red {
+  color: white !important;
+  background-color: red !important;
+}
+
+td.background-orange {
+  color: white !important;
+  background-color: darkorange !important;
+}
+
+td.background-yellow {
+  color: black !important;
+  background-color: yellow !important;
+}
+
+td.background-green {
+  color: white !important;
+  background-color: green !important;
+}

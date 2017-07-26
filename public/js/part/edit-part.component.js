@@ -23,9 +23,9 @@
           part.materialId = part.material.id;
         }
         vm.part = part;
-      });
-      partsService.getMaterials().then((materials) => {
-        vm.materials = materials;
+        partsService.getMaterials().then((materials) => {
+          vm.materials = materials;
+        });
       });
     };
 

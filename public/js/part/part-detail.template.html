@@ -1,16 +1,57 @@
 <navbar></navbar>
 <main class="container">
-<div class="row">
-  <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
-    <div class="col-md-offset-1 col-xs-10">
-      <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data"
-      chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
-      chart-dataset-override="$ctrl.datasetOverride">
-      </canvas>
+  <div ng-hide="$ctrl.validGraph" class="alert alert-danger col-xs-offset-2 col-xs-8" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    {{$ctrl.message}}
+  </div>
+  <div ng-show="$ctrl.validGraph" class="row">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+      <span class="splash splash-header">Scorecard</span>
     </div>
   </div>
-</div>
-<br><br>
+  <div ng-show="$ctrl.validGraph" class="row">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center">
+      <table class="table table-bordered table-striped">
+        <tr>
+          <th class="text-center col-xs-2 middle-header">Score</th>
+          <th class="text-center col-xs-1 middle-header">Current Price</th>
+          <th class="text-center col-xs-3 middle-header">Lowest Per Unit</th>
+          <th class="text-center col-xs-3 middle-header">Target Quantity</th>
+          <th class="text-center col-xs-1 middle-header">Optimal Quantity</th> 
+        </tr>
+        <tr>
+          <td class="background-{{$ctrl.scoreBackground}}">
+              <div>{{$ctrl.score | number : 0}}</div>
+          </td>
+          <td>
+            <div>${{$ctrl.part.price | number : 0}}</div>
+          </td>
+          <td>
+            <div>${{$ctrl.minPrice | number : 0}}</div>
+          </td>
+          <td>
+            <div>{{$ctrl.part.orderSize | number : 0}}</div>
+          </td>
+          <td>
+            <div>{{$ctrl.optimalQty | number : 0}}</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <br><br>
+  </div>
+
+  <div ng-show="$ctrl.validGraph" class="row">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+      <div class="col-md-offset-1 col-xs-10">
+        <canvas id="line" class="chart chart-bar" chart-data="$ctrl.data"
+        chart-labels="$ctrl.labels" chart-series="$ctrl.series" chart-options="$ctrl.options"
+        chart-dataset-override="$ctrl.datasetOverride">
+        </canvas>
+      </div>
+    </div>
+    <br><br>
+  </div>
   <div class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
       <div class="pull-right">
@@ -79,7 +120,7 @@
       <div class="col-xs-12 text-center">
         <table class="table table-bordered table-striped">
           <tr>
-            <th class="text-center col-xs-2 middle-header light-gray">Vendor</th>
+            <th class="text-center col-xs-2 middle-header">Vendor</th>
             <th class="text-center col-xs-1 middle-header">Printer</th>
             <th class="text-center col-xs-3 middle-header">Material</th>
             <th class="text-center col-xs-3 middle-header">Cost Estimate</th>
