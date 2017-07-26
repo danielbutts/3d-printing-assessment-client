@@ -15,7 +15,6 @@
     const userId = window.localStorage.getItem(__env.authUserIdKey);
     vm.$onInit = () => {
       authService.checkCredentials().then((result) => {
-        // console.log(result);
         const token = result.token;
         if (token === false) {
           $state.go('login');

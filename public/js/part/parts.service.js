@@ -18,7 +18,7 @@
     function getMaterials() {
       const options = {
         method: 'GET',
-        url: `/api/materials/`,
+        url: '/api/materials/',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -62,7 +62,7 @@
     function createPart(part) {
       const options = {
         method: 'POST',
-        url: `/api/parts`,
+        url: '/api/parts',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -74,7 +74,7 @@
     function updatePart(part) {
       const options = {
         method: 'PATCH',
-        url: `/api/parts`,
+        url: '/api/parts',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },

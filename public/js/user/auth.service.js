@@ -14,7 +14,6 @@
 
     function authenticate(login) {
       return $http.post('/api/auth', login).then((response) => {
-        // console.log('authenticate(login)', response);
         const token = response.data.token;
         const userId = response.data.userId;
         const username = response.data.username;
@@ -32,7 +31,6 @@
       const token = window.localStorage.getItem(__env.authTokenKey);
       $http.defaults.headers.common.Authorization = token;
       if (token !== undefined && token !== null) {
-        // console.log('checkCredentials', token);
         return $http.get('/api/auth/validate', token).then(response => response.data);
       }
       return Promise.reject('not authenticated');

@@ -15,33 +15,42 @@ router.get('/', authUtils.validateToken, (req, res) => {
 });
 
 router.post('/', authUtils.validateToken, (req, res, next) => {
-  // create an incoming form object
   const form = new formidable.IncomingForm();
-  // specify that we want to allow the user to upload multiple files in a single request
   form.multiples = true;
-  // store all uploads in the /uploads directory
   form.uploadDir = path.join(__dirname, '../uploads');
-  // every time a file has been uploaded successfully,
-  // rename it to it's orignal name
   form.on('file', (field, file) => {
-    fs.rename(file.path, path.join(form.uploadDir, file.name));
-    // let parser = parse({ delimiter: ',' });
+    fs.renameSync(file.path, path.join(form.uploadDir, file.name));
     const input = fs.createReadStream(path.join(form.uploadDir, file.name));
     const parser = parse({ columns: true }, (err, data) => {
-      const posts = [];
+      const uploadQueries = [];
+      data.forEach((row) => {
+        let { name, width, depth, height, volume, turnaround,
+            price, quantity, strength, materialType } = row;
+        if (row.name !== undefined) { name = row.name; }
+        if (row.width !== undefined) { width = numberOrNull(row.width); }
+        if (row.depth !== undefined) { depth = numberOrNull(row.depth); }
+        if (row.height !== undefined) { height = numberOrNull(row.height); }
+        if (row.volume !== undefined) { volume = numberOrNull(row.volume); }
+        if (row.turnaround !== undefined) { turnaround = numberOrNull(row.turnaround); }
+        if (row.price !== undefined) { price = numberOrNull(row.price); }
+        if (row.quantity !== undefined) { quantity = numberOrNull(row.quantity); }
+        if (row.strength !== undefined) { strength = booleanOrFalse(row.strength); }
+        if (row.materialType !== undefined) { materialType = row.materialType; }
 
-      data.forEach((part) => {
-        let { width, depth, height, volume, turnaround,
-          price, quantity, strength, material } = part;
-        if (part.width !== undefined) { width = numberOrNull(part.width); }
-        if (part.depth !== undefined) { depth = numberOrNull(part.depth); }
-        if (part.height !== undefined) { height = numberOrNull(part.height); }
-        if (part.volume !== undefined) { volume = numberOrNull(part.volume); }
-        if (part.turnaround !== undefined) { turnaround = numberOrNull(part.turnaround); }
-        if (part.price !== undefined) { price = numberOrNull(part.price); }
-        if (part.quantity !== undefined) { quantity = numberOrNull(part.quantity); }
-        if (part.strength !== undefined) { strength = numberOrNull(part.strength); }
-        if (part.material !== undefined) { material = numberOrNull(part.material); }
+        const part = {
+          userId: numberOrNull(req.userId),
+          name,
+          width,
+          depth,
+          height,
+          volume,
+          maxTurnaround: turnaround,
+          price,
+          orderSize: quantity,
+          strengthCritical: strength,
+          materialType,
+          uploaded: true,
+        };
 
         const options = {
           method: 'POST',
@@ -49,20 +58,19 @@ router.post('/', authUtils.validateToken, (req, res, next) => {
           headers: {
             authorization: req.token,
           },
-          data: {
-            width, depth, height, volume, turnaround, price, quantity, strength, material,
-          },
+          body: part,
           json: true,
         };
-        posts.push(rp(options).catch(() => 1));
+
+        uploadQueries.push(rp(options).catch(() => { // eslint-disable-line arrow-body-style
+          return { error: true, part };
+        }));
       });
-      Promise.all(posts).then((results) => {
-        console.log(results);
-      })
+
+      Promise.all(uploadQueries).then(() => {})
       .catch((error) => {
         next(error);
       });
-      // console.log(data);
     });
     input.pipe(parser);
   });
@@ -72,7 +80,7 @@ router.post('/', authUtils.validateToken, (req, res, next) => {
   });
   // once all the files have been uploaded, send a response to the client
   form.on('end', () => {
-    res.status(200).json({ message: 'File(s) sucessfulle uploaded.' });
+    res.status(200).json({ message: 'File(s) sucessfully uploaded.' });
   });
   // parse the incoming request containing the form data
   form.parse(req);
@@ -85,6 +93,10 @@ function numberOrNull(num) {
     return null;
   }
   return num;
+}
+
+function booleanOrFalse(bool) {
+  return (bool.toLowerCase() === 'true');
 }
 
 module.exports = router;

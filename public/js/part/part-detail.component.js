@@ -32,7 +32,7 @@
       }).then((part) => {
         partsService.getPrintingPricesForPart(part.id).then((printingOptions) => {
           // const modulus = Math.round(printingOptions.length / 20);
-          // console.log(printingOptions);
+          // TODO - limit graphed data points to 20;
           vm.printingOptions = printingOptions;
 
           const data = [];
@@ -125,8 +125,6 @@
               },
             },
           };
-
-          // console.log(data);
         });
       });
     };

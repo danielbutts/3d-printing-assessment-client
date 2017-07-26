@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  /* global angular, $ */
+  /* global angular, window, $ */
   /* eslint no-use-before-define: "off", no-param-reassign: "off", strict: "off" */
   angular.module('app')
     .component('csvUpload', {
@@ -14,9 +14,11 @@
     const vm = this;
     vm.header = 'Upload a .CSV file';
     vm.uploader = new FileUploader({
-      url: `/api/upload`,
+      url: '/api/upload',
+      headers: {
+        authorization: window.localStorage.getItem(__env.authTokenKey),
+      },
     });
-
 
     vm.$onInit = () => {
       if (authService.checkCredentials() === false) {

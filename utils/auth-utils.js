@@ -7,7 +7,6 @@ function validateToken(req, res, next) {
   if (req.headers.authorization !== undefined) {
     const jwtToken = jwt.decode(req.headers.authorization, JWT_SECRET);
     if (jwtToken !== undefined) {
-      // console.log(jwtToken);
       req.userId = jwtToken.userId;
       req.token = jwtToken.token;
       req.isAdmin = (jwtToken.isAdmin === 'true');
