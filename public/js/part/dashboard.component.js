@@ -68,7 +68,6 @@
                 }
               }
             }
-            // console.log(parts);
             utilsService.sortObjects(parts, 'score', true);
             vm.parts = parts;
             return vm.parts;

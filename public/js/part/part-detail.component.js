@@ -41,7 +41,7 @@
           const target = [];
           let total = 0;
 
-          const rangeMax = part.orderSize * 2;
+          const rangeMax = Math.max(part.orderSize * 2, 20);
           let minPrice;
           let optimalQty;
           for (let i = 0; i < printingOptions.length; i += 1) {

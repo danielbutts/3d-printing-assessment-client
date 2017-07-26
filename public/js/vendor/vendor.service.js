@@ -30,7 +30,7 @@
     function getVendors() {
       const options = {
         method: 'GET',
-        url: `/api/vendors/`,
+        url: '/api/vendors/',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -52,7 +52,7 @@
     function updateVendor(vendor) {
       const options = {
         method: 'PATCH',
-        url: `/api/vendors`,
+        url: '/api/vendors',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
@@ -64,7 +64,7 @@
     function getPrinters() {
       const options = {
         method: 'GET',
-        url: `/api/printers/`,
+        url: '/api/printers/',
         headers: {
           authorization: window.localStorage.getItem(__env.authTokenKey),
         },
