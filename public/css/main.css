@@ -121,7 +121,7 @@ tr.hoverable:hover {
 
 tr.hoverable:hover td:hover.test {
   background-color: darkorange !important;
-  color: white;
+  color: white !important;
 }
 
 tr.hoverable:hover td.test {
@@ -133,7 +133,7 @@ tr.hoverable span.warning {
 }
 
 tr.hoverable:hover span.warning {
-  color: darkorange;
+  color: white !important;
 }
 
 td.clickable:hover span.danger{
@@ -143,20 +143,20 @@ td.clickable:hover span.danger{
 
 td.background-red {
   color: white !important;
-  background-color: red !important;
+  background-color: #E45E64 !important;
 }
 
 td.background-orange {
   color: white !important;
-  background-color: darkorange !important;
+  background-color: #FF9653 !important;
 }
 
 td.background-yellow {
   color: black !important;
-  background-color: yellow !important;
+  background-color: #F7D269 !important;
 }
 
 td.background-green {
   color: white !important;
-  background-color: green !important;
+  background-color: #78C8B4 !important;
 }

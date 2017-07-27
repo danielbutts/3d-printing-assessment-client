@@ -51,8 +51,9 @@
                   }
                 }
               }
-              if (part.price !== undefined && minPrice !== undefined) {
-                part.score = (part.price / minPrice) * 100;
+              if (minPrice !== undefined) {
+                part.score = Math.min(part.price / minPrice, 1) * 100;
+                // vm.score = (vm.priceScore * 75) + (vm.qtyScore * 25);
                 switch (true) {
                   case part.score < 25:
                     part.scoreBackground = 'red';

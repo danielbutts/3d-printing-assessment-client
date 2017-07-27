@@ -4,6 +4,17 @@
     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
     {{$ctrl.message}}
   </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
+      <div class="pull-right">
+        <a <a ui-sref="edit-part({ partId: $ctrl.part.id })">
+            <button class="btn btn-default btn-sm light-gray text-center col-xs-12">
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+            </button>
+        </a>
+      </div>
+    </div>
+  </div>
   <div ng-show="$ctrl.validGraph" class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
       <span class="splash splash-header">Scorecard</span>
@@ -15,24 +26,24 @@
         <tr>
           <th class="text-center col-xs-2 middle-header">Score</th>
           <th class="text-center col-xs-1 middle-header">Current Price</th>
-          <th class="text-center col-xs-3 middle-header">Lowest Per Unit</th>
-          <th class="text-center col-xs-3 middle-header">Target Quantity</th>
+          <th class="text-center col-xs-1 middle-header">Lowest Per Unit</th>
+          <th class="text-center col-xs-1 middle-header">Target Quantity</th>
           <th class="text-center col-xs-1 middle-header">Optimal Quantity</th> 
         </tr>
         <tr>
           <td class="background-{{$ctrl.scoreBackground}}">
-              <div>{{$ctrl.score | number : 0}}</div>
+              <div class="h4"><b>{{$ctrl.score | number : 0}}</b></div>
           </td>
           <td>
             <div>${{$ctrl.part.price | number : 0}}</div>
           </td>
-          <td>
+          <td class="background-{{$ctrl.priceBackground}}">
             <div>${{$ctrl.minPrice | number : 0}}</div>
           </td>
           <td>
             <div>{{$ctrl.part.orderSize | number : 0}}</div>
           </td>
-          <td>
+          <td class="background-{{$ctrl.qtyBackground}}">
             <div>{{$ctrl.optimalQty | number : 0}}</div>
           </td>
         </tr>
@@ -50,19 +61,9 @@
         </canvas>
       </div>
     </div>
-    <br><br>
   </div>
-  <div class="row">
-    <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
-      <div class="pull-right">
-        <a <a ui-sref="edit-part({ partId: $ctrl.part.id })">
-            <button class="btn btn-default btn-sm light-gray text-center col-xs-12">
-              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
-            </button>
-        </a>
-      </div>
-    </div>
-  </div>
+  <br><br>
+
   <div class="row">
     <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
         <span class="splash splash-header">Part Detail</span>
@@ -70,47 +71,50 @@
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span>Name: {{$ctrl.part.name}}</span><br><br>
+        <span class="h5"><b>Name: </b>{{$ctrl.part.name}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span>Material: <span ng-if="ctrl.part.material !== null">{{$ctrl.part.material.type}} ({{$ctrl.part.material.name}})</span></span><br><br>
+        <span class="h5"><b>Material: </b><span ng-if="ctrl.part.material !== null">{{$ctrl.part.material.type}} ({{$ctrl.part.material.name}})</span></span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span>Width (mm): {{$ctrl.part.width}}</span><br><br>
+        <span class="h5"><b>Width (mm): </b>{{$ctrl.part.width}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span>Depth (mm): {{$ctrl.part.depth}}</span><br><br>
+        <span class="h5"><b>Depth (mm): </b>{{$ctrl.part.depth}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-sm-4">
-        <span>Height (mm): {{$ctrl.part.height}}</span><br><br>
+        <span class="h5"><b>Height (mm): </b>{{$ctrl.part.height}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span>Volume (cm^3): {{$ctrl.part.volume}}</span><br><br>
+        <span class="h5"><b>Volume (cm^3): </b>{{$ctrl.part.volume}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span>Current Price: ${{$ctrl.part.price}}</span><br><br>
+        <span class="h5"><b>Current Price: </b>${{$ctrl.part.price}}</span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span>Required Turnaround (days): {{$ctrl.part.maxTurnaround}}</span><br><br>
+        <span class="h5"><b>Required Turnaround (days): </b>{{$ctrl.part.maxTurnaround}}</span><br><br>
       </div>
     </div>
     <div class="row">
       <div class="col-md-offset-1 col-xs-12 col-md-4">
-        <span>Strength Critical: 
+        <span class="h5"><b>Strength Critical: </b>
           <span ng-if="$ctrl.part.strengthCritical">Yes</span>
           <span ng-if="!$ctrl.part.strengthCritical">No</span>
         </span><br><br>
       </div>
       <div class="col-md-offset-2 col-xs-12 col-md-4">
-        <span>Order Size: {{$ctrl.part.orderSize}}</span><br><br>
+        <span class="h5"><b>Order Size: </b>{{$ctrl.part.orderSize}}</span><br><br>
       </div>
     </div>
+    <br>
+    <br>
+    <br>
     <div ng-if="$ctrl.isAdmin === true" class="row">
       <div class="col-xs-12 col-md-offset-1 col-md-10 text-center section-header">
         <span class="splash splash-header">Printing Options</span>
@@ -121,37 +125,30 @@
         <table class="table table-bordered table-striped">
           <tr>
             <th class="text-center col-xs-2 middle-header">Vendor</th>
-            <th class="text-center col-xs-1 middle-header">Printer</th>
+            <th class="text-center col-xs-2 middle-header">Printer</th>
             <th class="text-center col-xs-3 middle-header">Material</th>
             <th class="text-center col-xs-3 middle-header">Cost Estimate</th>
-            <th class="text-center col-xs-1 middle-header">Shipping Estimate</th>
           </tr>
           <tr ng-repeat="option in $ctrl.printingOptions">
             <td>
-              <div>{{option.bureau.name}}</div>
-              <div>Zip Code: {{option.bureau.zipCode}}</div>
-              <div>Turnaround: {{option.bureau.turnaround}}</div>
+              <div class="h5"><b>{{option.bureau.name}}</b></div>
+              <!-- <div>Turnaround: {{option.bureau.turnaround}}</div>
               <div>Max Qty: {{option.bureau.maxOrder}}</div>
-              <div>Margin: {{option.bureau.costFactor}}</div>
+              <div>Margin: {{option.bureau.costFactor}}</div> -->
             </td>
             <td>
-              <div>{{option.printer.manufacturer}}</div>
-              <div>{{option.printer.name}}</div>
-              <div>Dimensions: {{option.printer.maxWidth}}x{{option.printer.maxDepth}}x{{option.printer.maxHeight}}</div>
-              <div>Process: {{option.printer.process}}</div>
+              <div class="h5"><b>{{option.printer.manufacturer}} {{option.printer.name}}</b></div>
+              <div class="h5"><b>Dimensions: </b> {{option.printer.maxWidth}} x {{option.printer.maxDepth}} x {{option.printer.maxHeight}}</div>
+              <div><b>Process: </b>{{option.printer.process}}</div>
             </td>
             <td>
-              <div>{{option.printer.material.type}}</div>
-              <div>{{option.printer.material.name}}</div>
-              <div>Density: {{option.part.material.density}}</div>
+              <div class="h5"><b>Material: </b> {{option.part.material.type}}</div>
+              <!-- <div class="h5"><b>{{option.part.material.name}}</b></div> -->
+              <div class="h5"><b>Density: </b>{{option.part.material.density}}</div>
             </td>
             <td>
-              <div>Volume: {{$ctrl.part.volume | number : 2}}</div>
-              <div>Unit Price: {{option.prices[0] | number : 2}}</div>
-              <div>Print Quantity: {{option.printQuantity | number : 0}}</div>
-            </td>
-            <td>
-              TBD
+              <div class="h5"><b>Min Unit Price:  </b>${{option.prices[option.prices.length-1] | number : 2}}</div>
+              <div class="h5"><b>Print Capacity:  </b>{{option.printQuantity | number : 0}}</div>
             </td>
           </tr>
         </table>

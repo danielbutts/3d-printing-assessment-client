@@ -71,8 +71,44 @@
               }
             }
           }
+          vm.minPrice = minPrice;
+          vm.optimalQty = optimalQty;
+
+          if (part.orderSize !== undefined && optimalQty !== undefined && optimalQty !== 0) {
+            vm.qtyScore = 1 - (Math.abs(optimalQty - part.orderSize) / optimalQty);
+            switch (true) {
+              case vm.qtyScore < 0.25:
+                vm.qtyBackground = 'red';
+                break;
+              case vm.qtyScore < 0.50:
+                vm.qtyBackground = 'orange';
+                break;
+              case vm.qtyScore < 0.75:
+                vm.qtyBackground = 'yellow';
+                break;
+              default:
+                vm.qtyBackground = 'green';
+            }
+          }
           if (part.price !== undefined && minPrice !== undefined) {
-            vm.score = (part.price / minPrice) * 100;
+            vm.priceScore = Math.min(part.price / minPrice, 1);
+            switch (true) {
+              case vm.priceScore < 0.25:
+                vm.priceBackground = 'red';
+                break;
+              case vm.priceScore < 0.50:
+                vm.priceBackground = 'orange';
+                break;
+              case vm.priceScore < 0.75:
+                vm.priceBackground = 'yellow';
+                break;
+              default:
+                vm.priceBackground = 'green';
+            }
+          }
+          if (vm.priceScore !== undefined && vm.qtyScore !== undefined) {
+            vm.score = vm.priceScore * 100;
+            // vm.score = (vm.priceScore * 75) + (vm.qtyScore * 25);
             switch (true) {
               case vm.score < 25:
                 vm.scoreBackground = 'red';
@@ -86,8 +122,6 @@
               default:
                 vm.scoreBackground = 'green';
             }
-            vm.minPrice = minPrice;
-            vm.optimalQty = optimalQty;
           }
           if (data.length === 0) {
             vm.validGraph = false;
