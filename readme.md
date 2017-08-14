@@ -28,6 +28,7 @@ PARTridge is a proof-of-concept assessment and decision support tool built for a
 
 ## Other Resources
 
+* [3D Printing Assessment API](https://github.com/danielbutts/3d-printing-assessment-api)
 * [Presentation Slides](https://docs.google.com/presentation/d/1OZ3dQM0XrzSwwCkKYrvwR0XvF68GWWbcVHSVPATfsIw/edit?usp=sharing)
 * [Presentation Video](https://vimeo.com/229517666)
 
